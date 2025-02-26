@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&family=Jersey+20&display=swap');
+
+#nav-item {
+    font-family: "Jersey 20", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 300%;
+    color: white;
+    margin-left: 2rem;
+}
