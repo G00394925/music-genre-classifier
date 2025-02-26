@@ -13,6 +13,8 @@
   }
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&family=Jersey+20&display=swap');
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -35,4 +37,42 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+body {
+  background-image: linear-gradient(to bottom right, #7772ffb0, #110addc0, #000111);
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+#home-div {
+  width: 600px;
+  text-align: center;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  color:white;
+}
+
+#home-heading {
+  font-family: "Jersey 20", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 600%;
+  text-align: left;
+  margin: 0;
+  text-shadow: 0px 4px 4px #00000066;
+
+}
+
+#home-body {
+  font-family: "Gothic A1", serif;
+  font-weight: 400;
+  font-style: normal;
+  text-align: left;
+  font-size: 150%;
+  text-shadow: 0px 4px 4px #00000066;
+
 }

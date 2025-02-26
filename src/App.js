@@ -1,12 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import Test from './components/test.js'
+import Home from './components/home.js'
 
 function App() {
   return (
-    <div>
-      <Test case = '1'/>
-      <Test case = '2'/>
+    <div id='home-div'>
+      <Home/>
     </div>
   );
 }
