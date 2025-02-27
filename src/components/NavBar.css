@@ -9,3 +9,10 @@
     margin-left: 10px;
 }
 
+#logo {
+    font-family: "Jersey 20", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 500%;
+    color: white;
+}

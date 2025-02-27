@@ -7,7 +7,7 @@ const NavBar = () => {
     return (
         <Navbar expand="lg">
             <Container>
-                <Navbar.Brand href="/">LOGO</Navbar.Brand>
+                <Navbar.Brand href="/" id="logo">LOGO</Navbar.Brand>
                 <Nav className="ms-auto">
                     <Nav.Link id="nav-item" href="/">Home</Nav.Link>
                     <Nav.Link id="nav-item" href="/">Analyze</Nav.Link>
