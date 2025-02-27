@@ -5,10 +5,10 @@ import './NavBar.css';
 
 const NavBar = () => {
     return (
-        <Navbar >
+        <Navbar expand="lg">
             <Container>
                 <Navbar.Brand href="/">LOGO</Navbar.Brand>
-                <Nav className="me-auto">
+                <Nav className="ms-auto">
                     <Nav.Link id="nav-item" href="/">Home</Nav.Link>
                     <Nav.Link id="nav-item" href="/">Analyze</Nav.Link>
                     <Nav.Link id="nav-item" href="/">History</Nav.Link>
