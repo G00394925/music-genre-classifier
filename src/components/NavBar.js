@@ -10,7 +10,7 @@ const NavBar = () => {
                 <Navbar.Brand href="/" id="logo">LOGO</Navbar.Brand>
                 <Nav className="ms-auto">
                     <Nav.Link id="nav-item" href="/">Home</Nav.Link>
-                    <Nav.Link id="nav-item" href="/">Analyze</Nav.Link>
+                    <Nav.Link id="nav-item" href="/analyze">Analyze</Nav.Link>
                     <Nav.Link id="nav-item" href="/">History</Nav.Link>
                     <Nav.Link id="nav-item" href="/">Account</Nav.Link>
                 </Nav>
