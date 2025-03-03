@@ -9,8 +9,8 @@ app = Flask(__name__)
 CORS(app)
 
 def printData():
-    data = pd.read_csv('./data.csv')
-    print(data)   
+    data = pd.read_csv('../data.csv')
+    print(data.head()) # Print the first few rows of the data
 
 # Test -- remove later
 @app.route('/api/test')
