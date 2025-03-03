@@ -12,12 +12,14 @@ import os
 app = Flask(__name__)
 CORS(app)
 
+# TODO: Separate functions into different classes
+
 # Train genre classification model
 def trainModel():
     data = pd.read_csv('../data.csv')
     
     # Remove unnecessary columns
-    X = data.drop(['filename', 'label'], axis = 1)
+    X = data.drop(['filename', 'label'], axis = 1) # Features
     y = data['label'] # Target variable (genre)
 
     # Split data into training and testing sets
