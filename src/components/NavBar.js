@@ -5,8 +5,8 @@ import './NavBar.css';
 
 const NavBar = () => {
     return (
-        <Navbar expand="lg">
-            <Container>
+        <Navbar>
+            <Container className='nav-container'>
                 <Navbar.Brand href="/" id="logo">LOGO</Navbar.Brand>
                 <Nav className="ms-auto">
                     <Nav.Link id="nav-item" href="/">Home</Nav.Link>

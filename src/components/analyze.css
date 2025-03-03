@@ -1,0 +1,18 @@
+#main-div {
+    background-color: rgb(245, 245, 245, 0.8);
+    height: 100vh;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 15% 4fr;
+    align-items: stretch;
+    height: 100%;
+    padding: 0;
+}
+
+.left-div {
+    grid-column: 1;
+    grid-row: 1;
+    border-right: 1px solid rgba(0, 0, 0, 0.425);
+}
