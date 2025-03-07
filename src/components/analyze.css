@@ -35,8 +35,8 @@
 }
 
 #upload-box {
-    padding: 50px;
-    margin-top: 90px;
+    width: 500px;
+    height: 300px;
 }
 
 #options-div {

@@ -54,8 +54,11 @@ const Analyze = () => {
                 </div>
 
                 <div id='right-div'>
-                    <div id="upload-box">
-                        <FileUploader handleChange={handleFile} types={allowedFiles} />
+                    <div id='upload-box'>
+                        <FileUploader 
+                            handleChange={handleFile}
+                            types={allowedFiles}
+                            style={{ height: '350px' }} />
                     </div>
                 </div>
             </div>
