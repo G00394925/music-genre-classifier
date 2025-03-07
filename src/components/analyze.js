@@ -53,8 +53,10 @@ const Analyze = () => {
                     <button id='apply-btn'>Apply</button>    
                 </div>
 
-                <div>
-                    <FileUploader handleFile={handleFile} allowedFiles={allowedFiles} />
+                <div id='right-div'>
+                    <div id="upload-box">
+                        <FileUploader handleChange={handleFile} types={allowedFiles} />
+                    </div>
                 </div>
             </div>
         </div>

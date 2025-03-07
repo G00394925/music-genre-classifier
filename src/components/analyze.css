@@ -29,6 +29,14 @@
     padding-top: 20px;
     padding-left: 25px;
     padding-right: 25px;
+    height: 100%;
+    width: 50%;
+    margin: auto;
+}
+
+#upload-box {
+    padding: 50px;
+    margin-top: 90px;
 }
 
 #options-div {
@@ -37,7 +45,6 @@
 
 #apply-btn {
     margin-top: 20px;
-    align-self: center;
     background-color: rgb(117, 95, 243);
     font-size: 20px;
     color: white;
