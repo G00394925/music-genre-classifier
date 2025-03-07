@@ -1,9 +1,10 @@
 import './analyze.css'
 import React, { useState } from 'react';
 import Select from 'react-select';
+import { FileUploader } from 'react-drag-drop-files';
 
 const Analyze = () => {
-
+    
     const options = [[ 
         { value: '1', label: '3D Surface Plot'},
         { value: '2', label: '3D Box Surface'},
@@ -21,6 +22,14 @@ const Analyze = () => {
         { value: 'lightgreen', label: 'Light Green'},
         { value: 'green', label: 'Green'}
     ]];
+    
+    const allowedFiles = ["mp3", "wav"]
+    const [file, setFile] = useState(null)
+    
+    const handleFile = (file) => {
+        setFile(file)
+    }
+    
 
     return (
         <div id="main-div">
@@ -42,6 +51,10 @@ const Analyze = () => {
                     </div>
 
                     <button id='apply-btn'>Apply</button>    
+                </div>
+
+                <div>
+                    <FileUploader handleFile={handleFile} allowedFiles={allowedFiles} />
                 </div>
             </div>
         </div>
