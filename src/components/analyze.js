@@ -5,13 +5,20 @@ import Select from 'react-select';
 const Analyze = () => {
 
     const options = [[ 
-        { value: '1', label: 'Graph 1'},
-        { value: '2', label: 'Graph 2'},
-        { value: '3', label: 'Graph 3'}
+        { value: '1', label: '3D Surface Plot'},
+        { value: '2', label: '3D Box Surface'},
+        { value: '3', label: '3D Histogram'}
     ],
     [
         { value: 'blue', label: 'Blue'},
+        { value: 'lightblue', label: ' Light Blue'},
+        { value: 'purple', label: 'Purple'},
+        { value: 'pink', label: 'Pink'},
+        { value: 'yellow', label: 'Yellow'},
+        { value: 'orange', label: 'Orange'},
+        { value: 'black', label: 'Black'},
         { value: 'red', label: 'Red'},
+        { value: 'lightgreen', label: 'Light Green'},
         { value: 'green', label: 'Green'}
     ]];
 
@@ -32,7 +39,9 @@ const Analyze = () => {
 
                         <h5>Colour 3</h5>
                         <Select options={options[1]} /> <br />
-                    </div>    
+                    </div>
+
+                    <button id='apply-btn'>Apply</button>    
                 </div>
             </div>
         </div>

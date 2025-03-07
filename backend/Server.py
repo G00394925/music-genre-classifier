@@ -14,16 +14,16 @@ model = None
 scaler = None
 
 # Ensures model is only trained once
-def initModel():
+def init_model():
     global model, scaler
     try:
-        model, scaler = trainer.trainModel()
+        model, scaler = trainer.train_model()
         print("Model has been trained")
     except Exception as e:
         print(str(e))
 
 # Test -- remove later
-@app.route('/api/test', methods = ['GET'])
+@app.route('/api/home', methods=['GET'])
 def test():
     try:
         if model is None:
@@ -36,8 +36,9 @@ def test():
 def not_found(e):
     return send_from_directory(app.static_folder, 'index.html')
 
+# Start server
 if __name__ == '__main__':
-    initModel()
+    init_model()
     app.run(debug = True)
 
 

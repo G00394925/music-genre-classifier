@@ -26,3 +26,15 @@
 #options-div {
     margin-top: 40px;
 }
+
+#apply-btn {
+    margin-top: 20px;
+    align-self: center;
+    background-color: rgb(117, 95, 243);
+    font-size: 20px;
+    color: white;
+    border-radius: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    cursor: pointer;
+}
