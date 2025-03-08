@@ -1,7 +1,8 @@
 import './analyze.css'
 import React, { useState } from 'react';
 import Select from 'react-select';
-import { FileUploader } from 'react-drag-drop-files';
+import { FilePond } from 'react-filepond'; 
+import 'filepond/dist/filepond.min.css'; // FilePond CSS styles
 
 const Analyze = () => {
     
@@ -23,13 +24,12 @@ const Analyze = () => {
         { value: 'green', label: 'Green'}
     ]];
     
-    const allowedFiles = ["mp3", "wav"]
-    const [file, setFile] = useState(null)
-    
+    const [file, setFile] = useState(null)    
+
     const handleFile = (file) => {
         setFile(file)
+        console.log("File uploaded: ", file)
     }
-    
 
     return (
         <div id="main-div">
@@ -55,10 +55,16 @@ const Analyze = () => {
 
                 <div id='right-div'>
                     <div id='upload-box'>
-                        <FileUploader 
-                            handleChange={handleFile}
-                            types={allowedFiles}
-                            style={{ height: '350px' }} />
+                        <h2 style={{fontWeight: "bolder"}}>Upload File</h2>
+                        <FilePond
+                            onupdatefiles={handleFile}
+                            allowMultiple={false}
+                            maxFiles={1}
+                            server="/api"
+                            name="user-track"
+                            labelIdle='Drag & Drop your track or <span class="filepond--label-action">Browse</span>' 
+                            acceptedFileTypes={['audio/mpeg', 'audio/wav', 'audio/flac', 'audio/ogg', 'audio/mp3']}
+                        />
                     </div>
                 </div>
             </div>

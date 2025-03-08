@@ -30,12 +30,12 @@
     padding-left: 25px;
     padding-right: 25px;
     height: 100%;
-    width: 50%;
     margin: auto;
 }
 
 #upload-box {
-    width: 500px;
+    margin-top: 100px;
+    width: 800px;
     height: 300px;
 }
 
@@ -52,4 +52,9 @@
     padding-left: 15px;
     padding-right: 15px;
     cursor: pointer;
+}
+
+.filepond--root .filepond--drop-label {
+    font-family: "Gothic A1", sans-serif;
+    height: 250px;
 }
