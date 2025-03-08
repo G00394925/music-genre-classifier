@@ -36,7 +36,9 @@
 
 #upload-box {
     width: 500px;
-    height: 300px;
+    height: 400px;
+    border: 2px dashed rgb(117, 95, 243);
+    border-radius: 10px;
 }
 
 #options-div {
@@ -52,4 +54,12 @@
     padding-left: 15px;
     padding-right: 15px;
     cursor: pointer;
+}
+
+.filepond--drop-label {
+    color: rgb(117, 95, 243);
+}
+
+.filepond--panel--root {
+    background-color: rgba(123, 100, 250, 0.8) !important; 
 }

@@ -23,7 +23,7 @@ def init_model():
         print(str(e))
 
 # Test -- remove later
-@app.route('/api/home', methods=['GET'])
+@app.route('/api/test', methods=['GET'])
 def test():
     try:
         if model is None:

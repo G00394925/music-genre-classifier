@@ -1,7 +1,8 @@
 import './analyze.css'
 import React, { useState } from 'react';
 import Select from 'react-select';
-import { FileUploader } from 'react-drag-drop-files';
+import { FilePond } from 'react-filepond';
+import "filepond/dist/filepond.min.css";
 
 const Analyze = () => {
     
@@ -23,12 +24,8 @@ const Analyze = () => {
         { value: 'green', label: 'Green'}
     ]];
     
-    const allowedFiles = ["mp3", "wav"]
     const [file, setFile] = useState(null)
-    
-    const handleFile = (file) => {
-        setFile(file)
-    }
+
     
 
     return (
@@ -54,12 +51,17 @@ const Analyze = () => {
                 </div>
 
                 <div id='right-div'>
-                    <div id='upload-box'>
-                        <FileUploader 
-                            handleChange={handleFile}
-                            types={allowedFiles}
-                            style={{ height: '350px' }} />
-                    </div>
+                    <form method="post" encType='multipart/form-data'>
+                        <div>
+                            <h2 style={{fontWeight: "bolder"}}>Upload File</h2>
+                            <FilePond 
+                                onupdatefiles={setFile} 
+                                allowMultiple={false}
+                                name="user-track"
+                                allowDrop={true}
+                                dropOnElement={true}/>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
