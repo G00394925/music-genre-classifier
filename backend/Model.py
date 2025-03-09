@@ -39,3 +39,4 @@ class ModelTrainer():
         print(f'Accuracy: {accuracy: .2f}')
 
         return self.model, self.scaler
+

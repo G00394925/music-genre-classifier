@@ -6,7 +6,13 @@ import os
 from Model import ModelTrainer
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={
+    r"/api/*": {
+        "origins": "*",
+        "methods": ["GET", "POST", "PUT"],
+        "allow_headers": ["Content-Type"]
+    }
+})
 
 # Initialize model
 trainer = ModelTrainer()
@@ -23,12 +29,19 @@ def init_model():
         print(str(e))
 
 # Test -- remove later
-@app.route('/api/home', methods=['GET'])
+@app.route('/api/test', methods=['GET'])
 def test():
     try:
         if model is None:
             return jsonify(message = "Model not yet initialized")
         return jsonify(message = "Model ready")
+    except Exception as e:
+        return jsonify(message = str(e))
+
+@app.route('/api/analyze', methods=['POST'])
+def analyze():
+    try:
+        return jsonify(message = "Analyze endpoint")    
     except Exception as e:
         return jsonify(message = str(e))
 

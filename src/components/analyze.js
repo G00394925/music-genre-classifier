@@ -1,6 +1,7 @@
 import './analyze.css'
 import React, { useState } from 'react';
 import Select from 'react-select';
+import axios from 'axios';
 import { FilePond } from 'react-filepond'; 
 import 'filepond/dist/filepond.min.css'; // FilePond CSS styles
 
@@ -36,21 +37,23 @@ const Analyze = () => {
             <div id="grid-div">
                 <div id="left-div">
                     <h2 style={{fontWeight: "bolder"}}>Options</h2>
-                    <div id="options-div">
-                        <h5>Graph Type</h5>
-                        <Select options={options[0]} /> <br />
+                    <form>
+                        <div id="options-div">
+                            <h5>Graph Type</h5>
+                            <Select options={options[0]} /> <br />
 
-                        <h5>Colour 1</h5>
-                        <Select options={options[1]} /> <br />
+                            <h5>Colour 1</h5>
+                            <Select options={options[1]} /> <br />
 
-                        <h5>Colour 2</h5>
-                        <Select options={options[1]} /> <br />
+                            <h5>Colour 2</h5>
+                            <Select options={options[1]} /> <br />
 
-                        <h5>Colour 3</h5>
-                        <Select options={options[1]} /> <br />
-                    </div>
+                            <h5>Colour 3</h5>
+                            <Select options={options[1]} /> <br />
+                        </div>
 
-                    <button id='apply-btn'>Apply</button>    
+                        <button id='apply-btn'>Apply</button>    
+                    </form>
                 </div>
 
                 <div id='right-div'>
@@ -60,7 +63,23 @@ const Analyze = () => {
                             onupdatefiles={handleFile}
                             allowMultiple={false}
                             maxFiles={1}
-                            server="/api"
+                            server={{
+                                url: '/api/analyze',
+                                process: {
+                                    method: 'POST',
+                                    headers: {
+                                        'Accept': 'application/json'
+                                    },
+                                    onload: (response) => {
+                                        // Handle successful upload
+                                        console.log('Upload complete:', JSON.parse(response));
+                                    },
+                                    onerror: (error) => {
+                                        // Handle upload error
+                                        console.error('Upload failed:', error);
+                                    }
+                                }
+                            }}
                             name="user-track"
                             labelIdle='Drag & Drop your track or <span class="filepond--label-action">Browse</span>' 
                             acceptedFileTypes={['audio/mpeg', 'audio/wav', 'audio/flac', 'audio/ogg', 'audio/mp3']}
