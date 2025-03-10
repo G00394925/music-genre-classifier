@@ -6,9 +6,20 @@ import pandas as pd
 
 
 class ModelTrainer():
+    """This class is used to train the genre classification model. Initialized on server start.
     
+    It reads a csv file of which contains the features and label of 1,000 royalty free
+    music tracks. The data is split into training and testing sets before being scaled for
+    accurate evaluation. The model is then trained using the Random Forest Classifier. 
+    
+    Attributes: 
+        model: The trained model
+        scaler: The feature scaler
+    """    
+
     # Constructor
     def __init__(self):
+        """ModelTrainer is initialized with an empty model and scaler."""
         self.model = None
         self.scaler = None
     
@@ -40,3 +51,13 @@ class ModelTrainer():
 
         return self.model, self.scaler
 
+
+class GenrePredictor():
+    def __init__(self, model, scaler, file):
+        self.model = model
+        self.scaler = scaler
+        self.file = file
+
+    # TODO: Implement
+    def predict_genre(self):
+        return 0

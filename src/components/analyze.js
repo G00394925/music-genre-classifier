@@ -88,6 +88,7 @@ const Analyze = () => {
                             }}
                             name="user-track"
                             labelIdle='Drag & Drop your track or <span class="filepond--label-action">Browse</span>' 
+                            acceptedFileTypes={['audio/mpeg', 'audio/wav', 'audio/flac', 'audio/ogg', 'audio/mp3']}
                         />
                     </div>
                 </div>
