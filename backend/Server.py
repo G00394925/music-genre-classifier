@@ -38,10 +38,12 @@ def test():
     except Exception as e:
         return jsonify(message = str(e))
 
+# Read the file
 @app.route('/api/analyze', methods=['POST'])
 def analyze():
     try:
-        return jsonify(message = "Analyze endpoint")    
+        file = (request.files['user-track'])
+        return jsonify(message = "Analyze endpoint works")    
     except Exception as e:
         return jsonify(message = str(e))
 

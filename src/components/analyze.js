@@ -29,7 +29,13 @@ const Analyze = () => {
 
     const handleFile = (file) => {
         setFile(file)
-        console.log("File uploaded: ", file)
+        axios.post('http://localhost:5000/api/analyze', file) 
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     return (
@@ -82,7 +88,6 @@ const Analyze = () => {
                             }}
                             name="user-track"
                             labelIdle='Drag & Drop your track or <span class="filepond--label-action">Browse</span>' 
-                            acceptedFileTypes={['audio/mpeg', 'audio/wav', 'audio/flac', 'audio/ogg', 'audio/mp3']}
                         />
                     </div>
                 </div>
