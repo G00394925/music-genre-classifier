@@ -28,16 +28,6 @@ def init_model():
     except Exception as e:
         print(str(e))
 
-# Test -- remove later
-@app.route('/api/test', methods=['GET'])
-def test():
-    try:
-        if model is None:
-            return jsonify(message = "Model not yet initialized")
-        return jsonify(message = "Model ready")
-    except Exception as e:
-        return jsonify(message = str(e))
-
 # Read the file
 @app.route('/api/analyze', methods=['POST'])
 def analyze():
