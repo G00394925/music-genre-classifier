@@ -33,9 +33,14 @@ def init_model():
 def analyze():
     try:
         file = (request.files['user-track'])
-        return jsonify(message = "Analyze endpoint works")    
+        y, sr = librosa.load(file, sr=None)
+
+        tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
+
+        return jsonify(message = "Estimated tempo: {:.2f} beats per minute".format(tempo[0]))    
+
     except Exception as e:
-        return jsonify(message = str(e))
+        return jsonify(message = "Error: " + str(e))
 
 @app.errorhandler(404)
 def not_found(e):
