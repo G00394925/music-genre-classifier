@@ -1,7 +1,7 @@
 from flask import Flask, request, send_from_directory, jsonify
 from flask_cors import CORS
 import numpy as np
-import librosa 
+import librosa
 import os
 from Model import ModelTrainer
 
@@ -19,14 +19,17 @@ trainer = ModelTrainer()
 model = None
 scaler = None
 
+
 # Ensures model is only trained once
 def init_model():
     global model, scaler
     try:
         model, scaler = trainer.train_model()
         print("Model has been trained")
+        print(librosa.cite())
     except Exception as e:
         print(str(e))
+
 
 # Read the file
 @app.route('/api/analyze', methods=['POST'])
@@ -37,10 +40,11 @@ def analyze():
 
         tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
 
-        return jsonify(message = "Estimated tempo: {:.2f} beats per minute".format(tempo[0]))    
+        return jsonify(message = "Estimated tempo: {:.2f} beats per minute".format(tempo[0]))
 
     except Exception as e:
-        return jsonify(message = "Error: " + str(e))
+        return jsonify(message="Error: "+str(e))
+
 
 @app.errorhandler(404)
 def not_found(e):
