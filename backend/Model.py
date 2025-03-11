@@ -31,13 +31,10 @@ class Model():
     def train_model(self):
         data = pd.read_csv('../data.csv')
 
-
         # Prepare fetures and labels
         X = data.drop(['filename', 'label'], axis=1)
         y = data['label']
 
-        print(f"Training data shape: {X.shape}")
-        print(f"Features used in training: {X.columns.tolist()}")
         # Split data into training and testing sets
         X_train, X_test, y_train, y_test = train_test_split(
             X, y, test_size=0.2)
@@ -98,10 +95,6 @@ class Model():
         mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=20)
         for i in range(20):
             features.append(float(mfccs[i].mean()))
-
-        print(f"Number of features extracted: {len(features)}")
-        print(f"Features array: {features}")
- 
 
         # Scale features
         features_scaled = self.scaler.transform([features])
