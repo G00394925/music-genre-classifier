@@ -50,5 +50,3 @@ def not_found(e):
 if __name__ == '__main__':
     init_model()
     app.run(debug = True)
-
-

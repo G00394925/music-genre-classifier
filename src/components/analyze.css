@@ -31,11 +31,16 @@
     padding-right: 25px;
     height: 100%;
     margin: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #upload-box {
     margin-top: 100px;
-    width: 800px;
+    width: 70%;
+    max-width: 800px;
     height: 300px;
 }
 
