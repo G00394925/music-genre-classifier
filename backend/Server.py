@@ -3,7 +3,7 @@ from flask_cors import CORS
 import numpy as np
 import librosa
 import os
-from Model import ModelTrainer
+from Model import Model
 
 app = Flask(__name__)
 CORS(app, resources={
@@ -15,18 +15,19 @@ CORS(app, resources={
 })
 
 # Initialize model
-trainer = ModelTrainer()
+m = Model()
 model = None
 scaler = None
 
 
-# Ensures model is only trained once
+# Model is only trained once on server start
 def init_model():
     global model, scaler
     try:
-        model, scaler = trainer.train_model()
+        model, scaler = m.train_model()
         print("Model has been trained")
         print(librosa.cite())
+
     except Exception as e:
         print(str(e))
 
@@ -36,11 +37,11 @@ def init_model():
 def analyze():
     try:
         file = (request.files['user-track'])
-        y, sr = librosa.load(file, sr=None)
+        prediction = m.predict_genre(file)
 
-        tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
-
-        return jsonify(message = "Estimated tempo: {:.2f} beats per minute".format(tempo[0]))
+        return jsonify(
+            message= f"Predicted genre: {prediction}"
+        )
 
     except Exception as e:
         return jsonify(message="Error: "+str(e))
@@ -53,4 +54,4 @@ def not_found(e):
 # Start server
 if __name__ == '__main__':
     init_model()
-    app.run(debug = True)
+    app.run(debug=True)
