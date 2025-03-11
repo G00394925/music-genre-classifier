@@ -40,7 +40,7 @@ def analyze():
         prediction = m.predict_genre(file)
 
         return jsonify(
-            message= f"Predicted genre: {prediction}"
+            message=f"Predicted genre: {prediction}"
         )
 
     except Exception as e:

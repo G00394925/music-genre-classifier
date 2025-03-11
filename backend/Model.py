@@ -1,3 +1,17 @@
+"""
+
+DATASET USED: GTZAN dataset
+
+@misc{tzanetakis_essl_cook_2001,
+author    = "Tzanetakis, George and Essl, Georg and Cook, Perry",
+title     = "Automatic Musical Genre Classification Of Audio Signals",
+url       = "http://ismir2001.ismir.net/pdf/tzanetakis.pdf",
+publisher = "The International Society for Music Information Retrieval",
+year      = "2001"
+}
+
+"""
+
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
@@ -15,6 +29,7 @@ class Model():
     is split into training and testing sets before being scaled for
     accurate evaluation. The model is then trained using
     the Random Forest Classifier.
+
 
     Attributes:
         model: The trained model
@@ -58,15 +73,14 @@ class Model():
 
         return self.model, self.scaler
 
-
+    # Predict genre of user uploaded track
     def predict_genre(self, file):
-
         y, sr = librosa.load(file, sr=None)
 
         # Initialize features array
         features = []
 
-        # Extract tempo and beats        
+        # Extract tempo and beats
         tempo, beats = librosa.beat.beat_track(y=y, sr=sr)
         features.append(float(tempo))
         features.append(int(len(beats)))
@@ -90,7 +104,6 @@ class Model():
         zero_crossing_rate = float(librosa.feature.zero_crossing_rate(y).mean())
         features.append(zero_crossing_rate)
 
-        
         # MFCC (Mel-frequency cepstral coefficients)
         mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=20)
         for i in range(20):
