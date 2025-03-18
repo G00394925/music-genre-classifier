@@ -41,7 +41,7 @@
     margin-top: 100px;
     width: 70%;
     max-width: 800px;
-    height: 300px;
+    height: 150px;
 }
 
 #options-div {
@@ -61,7 +61,7 @@
 
 .filepond--root .filepond--drop-label {
     font-family: "Gothic A1", sans-serif;
-    height: 250px;
+    height: 150px;
 }
 
 .loading-container {
@@ -71,9 +71,9 @@
 
 .loading-bar {
     width: 100%;
-    height: 4px;
+    height: 8px;
     background-color: #f0f0f0;
-    border-radius: 2px;
+    border-radius: 1px;
     overflow: hidden;
 }
 
