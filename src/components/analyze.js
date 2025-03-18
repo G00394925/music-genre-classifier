@@ -40,23 +40,27 @@ const Analyze = () => {
         console.log(settings)
     }
 
-    const [file, setFile] = useState(null)    
+    const [file, setFile] = useState(null)
+    const [isLoading, setIsLoading] = useState(false)
 
     const handleFile = (file) => {
         setFile(file)
+        setIsLoading(true)
         axios.post('http://localhost:5000/api/analyze', file) 
             .then(res => {
                 console.log(res)
+                setIsLoading(false)
             })
             .catch(err => {
                 console.log(err)
+                setIsLoading(false)
             })
     }
 
     return (
         <div id="main-div">
             <div id="grid-div">
-                <div id="left-div">
+                {/* <div id="left-div">
                     <h2 style={{fontWeight: "bolder"}}>Options</h2>
                     <form onSubmit={applySettings}>
                         <div id="options-div">
@@ -87,7 +91,7 @@ const Analyze = () => {
 
                         <button id='apply-btn'>Apply</button>    
                     </form>
-                </div>
+                </div> */}
 
                 <div id='right-div'>
                     <div id='upload-box'>
@@ -118,6 +122,14 @@ const Analyze = () => {
                             labelIdle='Drag & Drop your track or <span class="filepond--label-action">Browse</span>' 
                             acceptedFileTypes={['audio/mpeg', 'audio/wav', 'audio/flac', 'audio/ogg', 'audio/mp3']}
                         />
+                        {isLoading && (
+                            <div className="loading-container">
+                                <div className="loading-bar">
+                                    <div className="loading-progress"></div>
+                                </div>
+                                <p>Analyzing audio...</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
