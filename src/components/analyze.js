@@ -42,6 +42,7 @@ const Analyze = () => {
 
     const [file, setFile] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
+    const [prediction, setPrediction] = useState(null)
 
     const handleFile = (file) => {
         setFile(file)
@@ -110,7 +111,9 @@ const Analyze = () => {
                                     },
                                     onload: (response) => {
                                         // Handle successful upload
+                                        const result = JSON.parse(response)
                                         console.log('Upload complete:', JSON.parse(response));
+                                        setPrediction(result);
                                     },
                                     onerror: (error) => {
                                         // Handle upload error
@@ -128,6 +131,12 @@ const Analyze = () => {
                                     <div className="loading-progress"></div>
                                 </div>
                                 <p>Analyzing audio...</p>
+                            </div>
+                        )}
+
+                        {prediction && !isLoading && (
+                            <div className="prediction-result">
+                                <h3>{prediction.message}</h3>
                             </div>
                         )}
                     </div>
