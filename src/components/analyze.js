@@ -37,9 +37,10 @@ const Analyze = () => {
             <div id="grid-div">
                 <div id="left-div">
                     <Card className="bg-dark text-white" style={{ width: '18rem', height: '20rem', display: 'flex'}}>
-                        {prediction && (
-                            <Card.Header>{file[0]?.filename || 'Unknown'}</Card.Header>
-                        )}
+                        <Card.Title style={{ marginTop: '10px', textAlign: 'center'}}>
+                            {prediction ? 'Ready to play' : 'No track uploaded'}   
+                        </Card.Title>
+
                         <Card.Body className='media-player'>
                             <Card.Img src={placeholderImg} alt="Card image" />
                             <Checkbox 
@@ -54,7 +55,9 @@ const Analyze = () => {
                                 }}
                                 size='large' 
                                 icon={<PlayCircleIcon />} 
-                                checkedIcon={<PauseCircleIcon />} ></Checkbox>
+                                checkedIcon={<PauseCircleIcon />}
+                                disabled={prediction ? false : true} >
+                            </Checkbox>
 
                         </Card.Body>
                     </Card>
