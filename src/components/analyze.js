@@ -14,7 +14,7 @@ const Analyze = () => {
 
     const handleFile = (files) => {
         const file = files[0]?.file
-        
+
         console.log("Audio file: ", file)
         setFile(file)
         setIsLoading(true)
@@ -89,7 +89,7 @@ const Analyze = () => {
 
                         {prediction && !isLoading && (
                             <div className="prediction-result">
-                                <h3>{prediction.message}</h3>
+                                <h3>Predicted Genre: <span style={{ color: 'gold' }}>{prediction.message}</span> </h3>
                             </div>
                         )}
                     </div>
