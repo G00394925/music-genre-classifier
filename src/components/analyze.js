@@ -96,7 +96,6 @@ const Analyze = () => {
 
                 <div id='right-div'>
                     <div id='upload-box'>
-                        <h2 style={{fontWeight: "bolder"}}>Upload File</h2>
                         <FilePond
                             value={file}
                             onupdatefiles={handleFile}
