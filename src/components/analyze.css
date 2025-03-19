@@ -79,6 +79,12 @@
     cursor: pointer;
 }
 
+.media-player {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+}
+
 .filepond--root {
     width: 100%;
 }

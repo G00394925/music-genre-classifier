@@ -1,11 +1,13 @@
 import './analyze.css'
 import React, { useState } from 'react';
-import Select from 'react-select';
 import axios from 'axios';
 import { FilePond } from 'react-filepond'; 
 import 'filepond/dist/filepond.min.css'; // FilePond CSS styles
 import { Card } from 'react-bootstrap';
 import 'font-awesome/css/font-awesome.min.css';
+import { Checkbox } from '@mui/material';
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 
 const Analyze = () => {
     
@@ -36,8 +38,15 @@ const Analyze = () => {
                         {prediction && (
                             <Card.Header>{file[0]?.filename || 'Unknown'}</Card.Header>
                         )}
-                        <Card.Body>
-                            <i className='fa fa-play-circle' style={{ fontSize: '48px' }}></i>
+                        <Card.Body className='media-player'>
+                            <Checkbox 
+                                sx={{
+                                    color: "#4B77D1",
+                                    '& .MuiSvgIcon-root': { fontSize: 70 }
+                            }} 
+                            size='large' 
+                            icon={<PlayCircleIcon />} 
+                            checkedIcon={<PauseCircleIcon />} ></Checkbox>
                         </Card.Body>
                     </Card>
                 </div>
