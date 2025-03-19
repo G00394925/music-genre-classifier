@@ -13,11 +13,10 @@ const Analyze = () => {
     const [prediction, setPrediction] = useState(null)
 
     const handleFile = (files) => {
-        const file = files[0]?.file
-
-        console.log("Audio file: ", file)
+        const file = files[0]?.file // Since FilePond returns an array of files, we take the first one
         setFile(file)
-        setIsLoading(true)
+        setIsLoading(true) // Start loading bar
+
         // Send file to server for analysis
         axios.post('http://localhost:5000/api/analyze', file) 
         
@@ -45,7 +44,6 @@ const Analyze = () => {
                 </div>
 
                 <div id='right-div'>
-
                     {/* File upload */}
                     <div id='upload-box'>
                         <FilePond

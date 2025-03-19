@@ -4,6 +4,7 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 import { Card } from 'react-bootstrap';
 import placeholderImg from '../placeholder.jpg';
+import './AudioPlayer.css';
 
 const AudioPlayer = ({ audioFile, prediction }) => {
     const [isPlaying, setIsPlaying] = useState(false)
@@ -11,16 +12,19 @@ const AudioPlayer = ({ audioFile, prediction }) => {
     const audioRef = useRef(null)
 
     useEffect(() => {
+        // Remove previous audio URL
         if(audioUrl) {
             URL.revokeObjectURL(audioUrl)
         }
         
         if (audioFile) {
+            // Create URL for audio file
             const url = URL.createObjectURL(audioFile)
             setAudioUrl(url)
         }
 
         return () => {
+            // Remove URL when component unmounts
             if (audioUrl) {
                 URL.revokeObjectURL(audioUrl)
             }
@@ -29,7 +33,7 @@ const AudioPlayer = ({ audioFile, prediction }) => {
 
     // Playback controls
     const handlePlayPause = () => {
-        if(audioRef.current) {      // Check that audio file is loaded
+        if(audioRef.current) { // Check that audio file is loaded
             if(isPlaying) {
                 audioRef.current.pause();
             } else {
@@ -40,13 +44,15 @@ const AudioPlayer = ({ audioFile, prediction }) => {
     };
 
     return (
-        <Card className="bg-dark text-white" style={{ width: '18rem', height: '20rem', display: 'flex'}}>
+        <Card className="bg-dark text-white media-player" style={{ width: '18rem', height: '20rem', display: 'flex'}}>
         <Card.Title style={{ marginTop: '10px', textAlign: 'center'}}>
             {prediction ? 'Ready to play' : 'No track uploaded'}   
         </Card.Title>
 
-        <Card.Body className='media-player'>
+        <Card.Body style={{ paddingTop: '5px'}}>
             <Card.Img src={placeholderImg} alt="Card image" />
+
+            {/* Play button -- Decided on a customised checkbox to toggle playback */}
             <Checkbox 
                 sx={{
                     color: "#4B77D1",
@@ -56,7 +62,7 @@ const AudioPlayer = ({ audioFile, prediction }) => {
                 style={{
                     position: 'absolute',
                     top: '65%',
-                    left: '65%',
+                    left: '63%',
                 }}
                 
                 size='large' 

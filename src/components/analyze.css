@@ -79,15 +79,6 @@
     cursor: pointer;
 }
 
-.media-player {
-    display: flex;
-    position: absolute;
-    align-items: end;
-    height: 100%;
-    width: 100%;
-    padding: 10px;
-}
-
 .filepond--root {
     width: 100%;
 }
