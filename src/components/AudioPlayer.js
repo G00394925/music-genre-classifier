@@ -1,4 +1,4 @@
-import React, { useState, useRef} from 'react';
+import React, { useState, useRef, useEffect} from 'react';
 import { Checkbox } from '@mui/material';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
@@ -7,7 +7,25 @@ import placeholderImg from '../placeholder.jpg';
 
 const AudioPlayer = ({ audioFile, prediction }) => {
     const [isPlaying, setIsPlaying] = useState(false)
+    const [audioUrl, setAudioUrl] = useState(null)
     const audioRef = useRef(null)
+
+    useEffect(() => {
+        if(audioUrl) {
+            URL.revokeObjectURL(audioUrl)
+        }
+        
+        if (audioFile) {
+            const url = URL.createObjectURL(audioFile)
+            setAudioUrl(url)
+        }
+
+        return () => {
+            if (audioUrl) {
+                URL.revokeObjectURL(audioUrl)
+            }
+        }
+    }, [audioFile])
 
     // Playback controls
     const handlePlayPause = () => {
@@ -18,7 +36,7 @@ const AudioPlayer = ({ audioFile, prediction }) => {
                 audioRef.current.play();
             }
         }
-        setIsPlaying(!isPlaying)
+        setIsPlaying(!isPlaying)  // Toggle play/pause state
     };
 
     return (
@@ -48,7 +66,7 @@ const AudioPlayer = ({ audioFile, prediction }) => {
                 onChange={handlePlayPause}
                 disabled={prediction ? false : true}
             />
-            <audio ref={audioRef} src={audioFile ? URL.createObjectURL(audioFile) : ''} />
+            <audio ref={audioRef} src={audioUrl} />
         </Card.Body>
     </Card>
     )

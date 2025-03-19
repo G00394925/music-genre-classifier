@@ -12,11 +12,16 @@ const Analyze = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [prediction, setPrediction] = useState(null)
 
-    const handleFile = (file) => {
+    const handleFile = (files) => {
+        const file = files[0]?.file
+        
+        console.log("Audio file: ", file)
         setFile(file)
         setIsLoading(true)
+        // Send file to server for analysis
         axios.post('http://localhost:5000/api/analyze', file) 
         
+        // Handle response
         .then(res => {
             console.log(res)
             setIsLoading(false)
@@ -32,13 +37,11 @@ const Analyze = () => {
         <div id="main-div">
             <div id="grid-div">
                 <div id="left-div">
-
                     {/* Media Player */}
                     <AudioPlayer
                         audioFile={file}
                         prediction={prediction}
                     />
-
                 </div>
 
                 <div id='right-div'>
@@ -131,7 +134,7 @@ export default Analyze;
 //     const settings = {graphType, colour1, colour2, colour3}
 //     console.log(settings)
 // }
-                {/* <div id="left-div">
+                /* <div id="left-div">
                     <h2 style={{fontWeight: "bolder"}}>Options</h2>
                     <form onSubmit={applySettings}>
                         <div id="options-div">
@@ -162,4 +165,4 @@ export default Analyze;
 
                         <button id='apply-btn'>Apply</button>    
                     </form>
-                </div> */}
+                </div> */
