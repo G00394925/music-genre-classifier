@@ -11,8 +11,6 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import PauseCircleIcon from '@mui/icons-material/PauseCircle';
 
 const Analyze = () => {
-    
-    
     const [file, setFile] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [prediction, setPrediction] = useState(null)
@@ -22,6 +20,7 @@ const Analyze = () => {
         setFile(file)
         setIsLoading(true)
         axios.post('http://localhost:5000/api/analyze', file) 
+        
         .then(res => {
             console.log(res)
             setIsLoading(false)
@@ -36,6 +35,8 @@ const Analyze = () => {
         <div id="main-div">
             <div id="grid-div">
                 <div id="left-div">
+
+                    {/* Media Player */}
                     <Card className="bg-dark text-white" style={{ width: '18rem', height: '20rem', display: 'flex'}}>
                         <Card.Title style={{ marginTop: '10px', textAlign: 'center'}}>
                             {prediction ? 'Ready to play' : 'No track uploaded'}   
@@ -47,22 +48,26 @@ const Analyze = () => {
                                 sx={{
                                     color: "#4B77D1",
                                     '& .MuiSvgIcon-root': { fontSize: 70 }
-                            }} 
+                                }} 
+                                
                                 style={{
                                     position: 'absolute',
                                     top: '65%',
                                     left: '65%',
                                 }}
+                                
                                 size='large' 
                                 icon={<PlayCircleIcon />} 
                                 checkedIcon={<PauseCircleIcon />}
                                 disabled={prediction ? false : true} >
                             </Checkbox>
-
                         </Card.Body>
                     </Card>
                 </div>
+
                 <div id='right-div'>
+
+                    {/* File upload */}
                     <div id='upload-box'>
                         <FilePond
                             value={file}
@@ -91,7 +96,9 @@ const Analyze = () => {
                             name="user-track"
                             labelIdle='Drag & Drop your track or <span class="filepond--label-action">Browse</span>' 
                             acceptedFileTypes={['audio/mpeg', 'audio/wav', 'audio/flac', 'audio/ogg', 'audio/mp3']}
-                            />
+                        />
+                        
+                        {/* Loading bar -- Shows element if isLoading = true */}
                         {isLoading && (
                             <div className="loading-container">
                                 <div className="loading-bar">
