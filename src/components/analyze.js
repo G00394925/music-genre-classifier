@@ -1,4 +1,5 @@
 import './analyze.css'
+import placeholderImg from '../placeholder.jpg';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FilePond } from 'react-filepond'; 
@@ -15,6 +16,7 @@ const Analyze = () => {
     const [file, setFile] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [prediction, setPrediction] = useState(null)
+    const [isPlaying, setIsPlaying] = useState(false)
 
     const handleFile = (file) => {
         setFile(file)
@@ -34,19 +36,26 @@ const Analyze = () => {
         <div id="main-div">
             <div id="grid-div">
                 <div id="left-div">
-                    <Card className="bg-dark text-white" style={{ width: '18rem', height: '18rem' }}>
+                    <Card className="bg-dark text-white" style={{ width: '18rem', height: '20rem', display: 'flex'}}>
                         {prediction && (
                             <Card.Header>{file[0]?.filename || 'Unknown'}</Card.Header>
                         )}
                         <Card.Body className='media-player'>
+                            <Card.Img src={placeholderImg} alt="Card image" />
                             <Checkbox 
                                 sx={{
                                     color: "#4B77D1",
                                     '& .MuiSvgIcon-root': { fontSize: 70 }
                             }} 
-                            size='large' 
-                            icon={<PlayCircleIcon />} 
-                            checkedIcon={<PauseCircleIcon />} ></Checkbox>
+                                style={{
+                                    position: 'absolute',
+                                    top: '65%',
+                                    left: '65%',
+                                }}
+                                size='large' 
+                                icon={<PlayCircleIcon />} 
+                                checkedIcon={<PauseCircleIcon />} ></Checkbox>
+
                         </Card.Body>
                     </Card>
                 </div>

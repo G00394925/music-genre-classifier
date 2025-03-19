@@ -81,8 +81,11 @@
 
 .media-player {
     display: flex;
-    justify-content: center;
+    position: absolute;
     align-items: end;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
 }
 
 .filepond--root {
@@ -115,7 +118,7 @@
 .loading-progress {
     width: 30%;
     height: 100%;
-    background-color: rgb(117, 95, 243);
+    background-color: #4B77D1;
     border-radius: 2px;
     animation: loading 1s infinite ease-in-out;
 }
