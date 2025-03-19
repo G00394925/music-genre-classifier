@@ -1,20 +1,16 @@
 import './analyze.css'
-import placeholderImg from '../placeholder.jpg';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { FilePond } from 'react-filepond'; 
 import 'filepond/dist/filepond.min.css'; // FilePond CSS styles
-import { Card } from 'react-bootstrap';
 import 'font-awesome/css/font-awesome.min.css';
-import { Checkbox } from '@mui/material';
-import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import PauseCircleIcon from '@mui/icons-material/PauseCircle';
+import AudioPlayer from './AudioPlayer';
+
 
 const Analyze = () => {
     const [file, setFile] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [prediction, setPrediction] = useState(null)
-    const [isPlaying, setIsPlaying] = useState(false)
 
     const handleFile = (file) => {
         setFile(file)
@@ -38,32 +34,11 @@ const Analyze = () => {
                 <div id="left-div">
 
                     {/* Media Player */}
-                    <Card className="bg-dark text-white" style={{ width: '18rem', height: '20rem', display: 'flex'}}>
-                        <Card.Title style={{ marginTop: '10px', textAlign: 'center'}}>
-                            {prediction ? 'Ready to play' : 'No track uploaded'}   
-                        </Card.Title>
+                    <AudioPlayer
+                        audioFile={file}
+                        prediction={prediction}
+                    />
 
-                        <Card.Body className='media-player'>
-                            <Card.Img src={placeholderImg} alt="Card image" />
-                            <Checkbox 
-                                sx={{
-                                    color: "#4B77D1",
-                                    '& .MuiSvgIcon-root': { fontSize: 70 }
-                                }} 
-                                
-                                style={{
-                                    position: 'absolute',
-                                    top: '65%',
-                                    left: '65%',
-                                }}
-                                
-                                size='large' 
-                                icon={<PlayCircleIcon />} 
-                                checkedIcon={<PauseCircleIcon />}
-                                disabled={prediction ? false : true} >
-                            </Checkbox>
-                        </Card.Body>
-                    </Card>
                 </div>
 
                 <div id='right-div'>
