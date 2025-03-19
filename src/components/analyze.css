@@ -13,6 +13,20 @@
     margin: 0;
 }
 
+#second-grid {
+    display: grid;
+    grid-template-rows: 1fr, 1fr;
+    grid-template-columns: 3fr, 1fr, 1fr, 1fr;
+    align-items: stretch;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+}
+
+#info-card {
+
+}
+
 #left-div {
     grid-column: 1;
     grid-row: 1;
@@ -21,6 +35,9 @@
     padding-top: 20px;
     padding-left: 25px;
     padding-right: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #right-div {
@@ -38,9 +55,9 @@
 }
 
 #upload-box {
-    margin-top: 100px;
+    margin-top: 75px;
     width: 70%;
-    max-width: 800px;
+    max-width: 1000px;
     min-height: 150px;
     padding: 20px;
     background-color: #171717;
@@ -68,7 +85,7 @@
 
 .filepond--panel-root {
     background-color: #1c1c1c !important; 
-    border: 2px dashed black;
+    border: 2px dashed rgb(80, 80, 80);
 }
 
 .filepond--root .filepond--drop-label {
@@ -110,11 +127,11 @@
     margin-top: 20px;
     text-align: center;
     padding: 15px;
-    background-color: #f8f9fa;
+    background-color: #1c1c1c;
     border-radius: 8px;
 }
 
 .prediction-result h3 {
     margin: 0;
-    color: #333;
+    color: #c2c2c2;
 }
