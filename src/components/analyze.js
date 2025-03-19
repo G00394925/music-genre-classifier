@@ -34,7 +34,7 @@ const Analyze = () => {
                 <div id="left-div">
                     <Card className="bg-dark text-white" style={{ width: '18rem', height: '18rem' }}>
                         {prediction && (
-                            <Card.Header>{file[0].filename}</Card.Header>
+                            <Card.Header>{file[0]?.filename || 'Unknown'}</Card.Header>
                         )}
                         <Card.Body>
                             <i className='fa fa-play-circle' style={{ fontSize: '48px' }}></i>
