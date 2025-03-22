@@ -23,8 +23,9 @@
     margin: 0;
 }
 
-#info-card {
-    /* TODO: Fill out */
+#feature-card {
+    background-color: #171717;
+    border-radius: 10px;
 }
 
 #left-div {

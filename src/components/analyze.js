@@ -76,7 +76,7 @@ const Analyze = () => {
                         />
                         
                         {/* Loading bar -- Shows element if isLoading = true */}
-                        {isLoading && (
+                        {isLoading && !prediction &&(
                             <div className="loading-container">
                                 <div className="loading-bar">
                                     <div className="loading-progress"></div>
