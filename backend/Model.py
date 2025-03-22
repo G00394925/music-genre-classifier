@@ -147,4 +147,15 @@ class Model():
         # Predict the genre
         prediction = self.model.predict(features_scaled)
 
-        return prediction[0]
+        # Get track duration
+        duration = librosa.get_duration(y=y, sr=sr)
+
+        return {
+            "prediction": prediction[0],
+            "features": {
+                "tempo": round(float(tempo), 1),
+                "beats": len(beats),
+                "energy": round(rmse, 3),
+                "duration": round(duration, 2)
+            }
+        }
