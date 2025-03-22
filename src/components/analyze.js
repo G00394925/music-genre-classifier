@@ -5,6 +5,11 @@ import { FilePond } from 'react-filepond';
 import 'filepond/dist/filepond.min.css'; // FilePond CSS styles
 import 'font-awesome/css/font-awesome.min.css';
 import AudioPlayer from './AudioPlayer';
+import { Card } from 'react-bootstrap';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import TimerIcon from '@mui/icons-material/Timer';
+import GraphicEqIcon from '@mui/icons-material/GraphicEq';
+import WaveformIcon from '@mui/icons-material/Whatshot';
 
 
 const Analyze = () => {
@@ -76,7 +81,7 @@ const Analyze = () => {
                         />
                         
                         {/* Loading bar -- Shows element if isLoading = true */}
-                        {isLoading && !prediction &&(
+                        {isLoading && (
                             <div className="loading-container">
                                 <div className="loading-bar">
                                     <div className="loading-progress"></div>
@@ -91,6 +96,31 @@ const Analyze = () => {
                             </div>
                         )}
                     </div>
+                    
+                    {prediction && (
+                        
+                        <div id="features-container">
+                            <Card id="feature-card">
+                                <MusicNoteIcon style={{ color: 'gold', width: '40px', height: '40px' }}/>
+                                <Card.Title>
+                                    Tempo
+                                    </Card.Title>
+                                <Card.Subtitle>{prediction.features.tempo} BPM </Card.Subtitle>
+                            </Card>
+
+                            <Card id="feature-card">
+                                <GraphicEqIcon style={{ color: 'gold', width: '40px', height: '40px' }}/>
+                                <Card.Title style={{ fontSize: '30px'}}>Energy</Card.Title>
+                                <Card.Subtitle>{prediction.features.energy}</Card.Subtitle>
+                            </Card>
+
+                            <Card id="feature-card">
+                                <WaveformIcon style={{ color: 'gold', width: '40px', height: '40px' }}/>
+                                <Card.Title style={{ fontSize: '30px'}}>Beats</Card.Title>
+                                <Card.Subtitle>{prediction.features.beats}</Card.Subtitle>
+                            </Card>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

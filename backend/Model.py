@@ -105,7 +105,7 @@ class Model():
             
         Returns:
             prediction: The predicted genre
-        
+            features: The extracted features
         """
         y, sr = librosa.load(file, sr=None)
 
