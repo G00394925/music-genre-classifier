@@ -37,11 +37,12 @@ def init_model():
 def analyze():
     try:
         file = (request.files['user-track'])
-        prediction = m.predict_genre(file)
+        result = m.predict_genre(file)
 
-        return jsonify(
-            message=f"{prediction}"
-        )
+        return jsonify({
+            "message": result["prediction"],
+            "features": result["features"]
+        })
 
     except Exception as e:
         return jsonify(message="Error: "+str(e))
