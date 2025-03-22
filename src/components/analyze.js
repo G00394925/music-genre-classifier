@@ -46,6 +46,44 @@ const Analyze = () => {
                         audioFile={file}
                         prediction={prediction}
                     />
+
+                    <div id="info-container">
+                        <Card id="info-card">
+                            <Card.Title>
+                                <MusicNoteIcon style={{ color: 'gold', width: '40px', height: '40px' }}/>
+                                Tempo
+                            </Card.Title>
+                            <hr/>
+                            <Card.Subtitle>
+                                The speed at which a piece of music is played. 
+                                It is measured in BPM (beats per minute).
+                            </Card.Subtitle>
+                        </Card>
+
+                        <Card id="info-card">
+                            <Card.Title>
+                                <GraphicEqIcon style={{ color: 'gold', width: '40px', height: '40px' }}/>
+                                Energy
+                            </Card.Title>
+                            <hr/>
+                            <Card.Subtitle>
+                                'Energy' describes the intensity and activity of a track.
+                                It is measured from on a scale 0.0 to 1.0, where 1.0 would
+                                be the most energetic and 0.0 the least.
+                            </Card.Subtitle>
+                        </Card>
+
+                        <Card id="info-card">
+                            <Card.Title>
+                                <WaveformIcon style={{ color: 'gold', width: '40px', height: '40px' }}/>
+                                Beats
+                            </Card.Title>
+                            <hr/>
+                            <Card.Subtitle>
+                                The number of beats in a track. 
+                            </Card.Subtitle>
+                        </Card>
+                    </div>
                 </div>
 
                 <div id='right-div'>
@@ -102,21 +140,19 @@ const Analyze = () => {
                         <div id="features-container">
                             <Card id="feature-card">
                                 <MusicNoteIcon style={{ color: 'gold', width: '40px', height: '40px' }}/>
-                                <Card.Title>
-                                    Tempo
-                                    </Card.Title>
+                                <Card.Title>Tempo</Card.Title>
                                 <Card.Subtitle>{prediction.features.tempo} BPM </Card.Subtitle>
                             </Card>
 
                             <Card id="feature-card">
                                 <GraphicEqIcon style={{ color: 'gold', width: '40px', height: '40px' }}/>
-                                <Card.Title style={{ fontSize: '30px'}}>Energy</Card.Title>
+                                <Card.Title>Energy</Card.Title>
                                 <Card.Subtitle>{prediction.features.energy}</Card.Subtitle>
                             </Card>
 
                             <Card id="feature-card">
                                 <WaveformIcon style={{ color: 'gold', width: '40px', height: '40px' }}/>
-                                <Card.Title style={{ fontSize: '30px'}}>Beats</Card.Title>
+                                <Card.Title>Beats</Card.Title>
                                 <Card.Subtitle>{prediction.features.beats}</Card.Subtitle>
                             </Card>
                         </div>
