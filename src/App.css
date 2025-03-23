@@ -77,3 +77,16 @@ body {
   font-size: 150%;
   text-shadow: 0px 4px 4px #00000066;
 }
+
+#get-started-button {
+  font-family: "Gothic A1", sans-serif;
+  color: black;
+  background-color: white;
+  padding: 20px;
+  border: none;
+  border-radius: 30px;
+  font-size: 150%;
+  margin: 25px 0px;
+  display: block;
+  text-align: center;
+}
