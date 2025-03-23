@@ -68,7 +68,7 @@ const Analyze = () => {
                             <hr/>
                             <Card.Subtitle>
                                 'Energy' describes the intensity and activity of a track.
-                                It is measured from on a scale 0.0 to 1.0, where 1.0 would
+                                It is measured on a scale of 0.0 to 1.0, where 1.0 would
                                 be the most energetic and 0.0 the least.
                             </Card.Subtitle>
                         </Card>

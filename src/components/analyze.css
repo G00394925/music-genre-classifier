@@ -81,6 +81,7 @@
 #info-card .card-subtitle {
     font-size: 18px;
 }
+
 #left-div {
     grid-column: 1;
     grid-row: 1;
