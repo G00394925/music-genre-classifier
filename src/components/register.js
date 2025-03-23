@@ -17,6 +17,10 @@ const Register = () => {
         );
     }
 
+    const validateAccount = () => {
+
+    }
+
     return(
         <div>
             <form 
@@ -72,7 +76,7 @@ const Register = () => {
                 </div>
 
                 <input id="submit-button" type="submit" value="Register"/>
-                <label style={{ margin: '5px' }}>Already have an account? <a>Sign in here!</a></label>
+                <label style={{ margin: '5px' }}>Already have an account? <a href="/login">Sign in here!</a></label>
             </form>
 
         </div>
