@@ -44,7 +44,7 @@ const AudioPlayer = ({ audioFile, prediction }) => {
     };
 
     return (
-        <Card className="bg-dark text-white media-player" style={{ width: '18rem', height: '20rem', display: 'flex'}}>
+        <Card className="bg-dark text-white media-player" style={{ width: '100%', height: '100%', maxWidth: '18rem', maxHeight: '20rem', display: 'flex'}}>
         <Card.Title style={{ marginTop: '10px', textAlign: 'center'}}>
             {prediction ? 'Ready to play' : 'No track uploaded'}   
         </Card.Title>
