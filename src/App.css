@@ -46,6 +46,7 @@ body {
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  overflow: hidden;
 }
 
 #home-div {

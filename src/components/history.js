@@ -7,6 +7,20 @@ const History = () => {
             <h1>History</h1>
             <div id="history-table">
                 {/* TODO: Add table here */}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Audio File</th>
+                            <th>Prediction</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Audio File</td>
+                            <td>Prediction</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     )

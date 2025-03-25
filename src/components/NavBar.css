@@ -21,6 +21,14 @@
     height: 80px;
 }
 
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
 #nav-item.active {
     color: rgb(8, 133, 216)
 }
