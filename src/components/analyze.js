@@ -80,7 +80,8 @@ const Analyze = () => {
                             </Card.Title>
                             <hr/>
                             <Card.Subtitle>
-                                The number of beats in a track. 
+                                A "beat" represents the fundamental unit of time in music.
+                                It is the pulse and rythm of the track. 
                             </Card.Subtitle>
                         </Card>
                     </div>
