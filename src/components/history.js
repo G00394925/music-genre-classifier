@@ -1,27 +1,34 @@
+import { Card } from 'react-bootstrap';
+import axios from 'axios';
 import './history.css';
 
 
 const History = () => {
     return (
         <div id="main-div">
-            <h1>History</h1>
-            <div id="history-table">
-                {/* TODO: Add table here */}
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Audio File</th>
-                            <th>Prediction</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Audio File</td>
-                            <td>Prediction</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            {/* TODO: Add table here */}
+            <Card id="history-table">
+                <Card.Body>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>File Name</th>
+                                <th>Genre</th>
+                                <th>Tempo</th>
+                                <th>Energy</th>
+                                <th>Beats</th>
+                                <th>Date</th>
+                                <th>uh</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </Card.Body>
+            </Card>
         </div>
     )
 }
