@@ -118,23 +118,13 @@ const Analyze = () => {
                             labelIdle='Drag & Drop your track or <span class="filepond--label-action">Browse</span>' 
                             acceptedFileTypes={['audio/mpeg', 'audio/wav', 'audio/flac', 'audio/ogg', 'audio/mp3']}
                         />
-                        
-                        {/* Loading bar -- Shows element if isLoading = true */}
-                        {isLoading && (
-                            <div className="loading-container">
-                                <div className="loading-bar">
-                                    <div className="loading-progress"></div>
-                                </div>
-                                <p>Analyzing audio...</p>
-                            </div>
-                        )}
-
-                        {prediction && !isLoading && (
-                            <div className="prediction-result">
-                                <h3>Genre: <span style={{ color: 'gold' }}>{prediction.message}</span> </h3>
-                            </div>
-                        )}
                     </div>
+    
+                    {prediction && (
+                        <div className="prediction-result">
+                            <h3>Genre: <span style={{ color: 'gold' }}>{prediction.message}</span> </h3>
+                        </div>
+                    )}
                     
                     {prediction && (
                         

@@ -8,11 +8,11 @@ const History = () => {
 
     const [history, setHistory] = useState([]);
 
+    // Fetch history from server
     useEffect(() => {
         axios.get('/api/history')
         .then(response => {
-            console.log(response.data)
-            setHistory(response.data);
+            setHistory(response.data); // Set the history state with the response data
         })
         .catch(error => {
             console.error('There was an error fetching the history!', error);
@@ -21,7 +21,6 @@ const History = () => {
     
     return (
         <div id="main-div">
-            {/* TODO: Add table here */}
             <Card id="history-table">
                 <Card.Body>
                     <table>
@@ -36,6 +35,7 @@ const History = () => {
                             </tr>
                         </thead>
                         <tbody>
+                            {/* Map through the history array and create a table row for each item */}
                             {history.map((item, index) => (
                                 <tr key={index}>
                                     <td>{item.filename}</td>
