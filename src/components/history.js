@@ -36,16 +36,16 @@ const History = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {history.map((item, index) => {
+                            {history.map((item, index) => (
                                 <tr key={index}>
                                     <td>{item.filename}</td>
                                     <td>{item.prediction}</td>
                                     <td>{item.features.tempo}</td>
                                     <td>{item.features.energy}</td>
                                     <td>{item.features.beats}</td>
-                                    <td>{new Date(item.timestamp).toLocaleDateString}</td>                                
+                                    <td>{new Date(item.timestamp).toLocaleDateString()}</td>                                
                                 </tr>
-                            })}
+                            ))}
                         </tbody>
                     </table>
                 </Card.Body>
