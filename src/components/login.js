@@ -25,7 +25,7 @@ const Login = () => {
         e.preventDefault()
 
         try{
-            const response = await axios.get('/api/sign-in', {
+            const response = await axios.post('/api/sign-in', {
                 email: email,
                 password: password
             })

@@ -114,7 +114,7 @@ def create_account():
     except Exception as e:
         print(str(e))
 
-@app.route('/api/sign-in', methods=['GET'])
+@app.route('/api/sign-in', methods=['POST'])
 def get_account():
     try:
         user_creds = request.get_json()
