@@ -18,7 +18,31 @@ const Register = () => {
     }
 
     const validateAccount = () => {
+        if (userName === '' || email === '' || password === '' || repeatPass === '') {
+            alert('Please fill in all fields');
+            return false;
+        }
 
+        if (!validateEmail(email)) {
+            alert('Please enter a valid email address');
+            return false;
+        }
+
+        if (password !== repeatPass) {
+            alert('Passwords do not match');
+            return false;
+        }
+
+        return true;
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (validateAccount()) {
+            // Submit the form
+            console.log('Form submitted');
+            // Here you would typically send the data to your server
+        }
     }
 
     return(

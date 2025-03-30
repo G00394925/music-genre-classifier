@@ -6,6 +6,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [verifyPass, setVerifyPass] = useState(false);
+    const [loggedin, setLoggedin] = useState(false);
 
     const validateEmail = (email) => {
         return String(email)
@@ -16,7 +17,7 @@ const Login = () => {
     }
 
     const validateAccount = () => {
-
+        
     }
 
     return(
