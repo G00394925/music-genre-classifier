@@ -1,33 +1,5 @@
 import './analyze.css'
 import React, { useState } from 'react';
-<<<<<<< HEAD
-import Select from 'react-select';
-import { FilePond } from 'react-filepond';
-import "filepond/dist/filepond.min.css";
-
-const Analyze = () => {
-    
-    const options = [[ 
-        { value: '1', label: '3D Surface Plot'},
-        { value: '2', label: '3D Box Surface'},
-        { value: '3', label: '3D Histogram'}
-    ],
-    [
-        { value: 'blue', label: 'Blue'},
-        { value: 'lightblue', label: ' Light Blue'},
-        { value: 'purple', label: 'Purple'},
-        { value: 'pink', label: 'Pink'},
-        { value: 'yellow', label: 'Yellow'},
-        { value: 'orange', label: 'Orange'},
-        { value: 'black', label: 'Black'},
-        { value: 'red', label: 'Red'},
-        { value: 'lightgreen', label: 'Light Green'},
-        { value: 'green', label: 'Green'}
-    ]];
-    
-    const [file, setFile] = useState(null)
-
-=======
 import axios from 'axios';
 import { FilePond } from 'react-filepond'; 
 import 'filepond/dist/filepond.min.css'; // FilePond CSS styles
@@ -64,7 +36,6 @@ const Analyze = () => {
             setIsLoading(false)
         })
     }
->>>>>>> f73b5badc6c2233889e7aeecf367f4a015adb9ea
     
     return (
         <div id="main-div">
@@ -117,19 +88,6 @@ const Analyze = () => {
                 </div>
 
                 <div id='right-div'>
-<<<<<<< HEAD
-                    <form method="post" encType='multipart/form-data'>
-                        <div>
-                            <h2 style={{fontWeight: "bolder"}}>Upload File</h2>
-                            <FilePond 
-                                onupdatefiles={setFile} 
-                                allowMultiple={false}
-                                name="user-track"
-                                allowDrop={true}
-                                dropOnElement={true}/>
-                        </div>
-                    </form>
-=======
                     {/* File upload */}
                     <div id='upload-box'>
                         <FilePond
@@ -190,7 +148,6 @@ const Analyze = () => {
                             </Card>
                         </div>
                     )}
->>>>>>> f73b5badc6c2233889e7aeecf367f4a015adb9ea
                 </div>
             </div>
         </div>
