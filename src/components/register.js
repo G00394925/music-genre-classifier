@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './register.css';
 import { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const [userName, setUserName] = useState('');
@@ -8,6 +9,8 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [repeatPass, setRepeatPass] = useState('');
     const [verifyPass, setVerifyPass] = useState(false);
+
+    const navigate = useNavigate()
 
     const validateEmail = (email) => {
         return String(email)
@@ -36,19 +39,30 @@ const Register = () => {
         return true;
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (validateAccount()) {
-            // Submit the form
-            console.log('Form submitted');
-            // Here you would typically send the data to your server
+            try {
+                const response = await axios.post('api/create-account', {
+                    username: userName,
+                    email: email,
+                    password, password
+                })
+
+                if(response.data.success) {
+                    alert('Account created successfully')
+                    navigate('/login')
+                }
+            } catch(error) {
+                console.error("Registration error: ", error)
+            }
         }
     }
 
     return(
         <div>
             <form 
-                // onSubmit={handleSubmit} 
+                onSubmit={handleSubmit} 
                 className="card m-4 mx-auto login-styling" 
                 style={{width: 400, padding: 25, backgroundColor: '#171717', color: 'white', borderRadius: '15px'}}>
 
@@ -77,7 +91,7 @@ const Register = () => {
                 <div className="form-group">
                     <label>Password</label>
                     <input 
-                        type="text" 
+                        type="password" 
                         className="form-control" 
                         style={{backgroundColor: '#2b2b2b', color: 'white', borderColor: '#7F7F7F'}} 
                         value={password} 
@@ -88,7 +102,7 @@ const Register = () => {
                 <div className="form-group">
                     <label htmlFor="email">Repeat Password</label>
                     <input 
-                        type="text" 
+                        type="password" 
                         className="form-control" 
                         style={{backgroundColor: '#2b2b2b', color: 'white', borderColor: '#7F7F7F'}} 
                         value={repeatPass} 

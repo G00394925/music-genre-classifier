@@ -24,7 +24,8 @@ CORS(app, resources={
 try:
     client = MongoClient(os.getenv("MONGO_URI")) # MongoDB connection URI
     db = client['music_analyzer'] # Database name
-    analyses = db['analyses'] # Collection name
+    analyses = db['analyses'] # Analyses collection
+    users = db['users'] # Registered users collection
     print("\033[92m" + "MongoDB connected" + "\033[0m")
 except Exception as e:
     print("\033[31m" + "MongoDB connection error: ", str(e) + "\033[0m")
@@ -85,6 +86,20 @@ def get_history():
     except Exception as e:
         return jsonify(message="Error: "+str(e))
     
+@app.route('/api/create-account', methods=['POST'])
+def create_account():
+    try:
+        user = request.get_json()
+        user_data = {
+            "username": user.userName,
+            "email": user.email,
+            "password": user.password
+        }
+        users.insert_one(user_data)
+    except Exception as e:
+        print(str(e))
+
+
 @app.errorhandler(404)
 def not_found(e):
     return send_from_directory(app.static_folder, 'index.html')
