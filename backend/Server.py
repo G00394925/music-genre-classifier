@@ -2,8 +2,13 @@ from flask import Flask, request, send_from_directory, jsonify
 from flask_cors import CORS
 import numpy as np
 import librosa
-import os
+from pymongo import MongoClient
+from dotenv import load_dotenv
 from Model import Model
+import os
+
+# Load MongoDB connection URI from .env file
+load_dotenv()
 
 app = Flask(__name__)
 CORS(app, resources={
@@ -13,6 +18,16 @@ CORS(app, resources={
         "allow_headers": ["Content-Type"]
     }
 })
+
+# MongoDB connection
+try:
+    client = MongoClient(os.getenv("MONGO_URI")) # MongoDB connection URI
+    db = client['music_analyzer'] # Database name
+    analyses = db['analyses'] # Collection name
+    print("MongoDB connected")
+except Exception as e:
+    print("MongoDB connection error: ", str(e))
+
 
 # Initialize model
 m = Model()
