@@ -1,12 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './register.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; 
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loggedin, setLoggedin] = useState(false);
+
+    const navigate = useNavigate()
 
     // Verify that given email uses the correct format
     const validateEmail = (email) => {
@@ -18,19 +21,30 @@ const Login = () => {
         );
     }
 
-    // Verify that account details are valid -- correct email, matching passwords
-    const validateAccount = () => {
-        if (!validateEmail(email)) {
-            alert('Please enter a valid email address');
-            return false;
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+
+        try{
+            const response = await axios.get('/api/sign-in', {
+                email: email,
+                password: password
+            })
+    
+            if (response.data.success) {
+                setLoggedin(true)
+                navigate('/analyze')
+            } 
+
+        } catch(error) {
+            console.error("Login error: ", error)
+            alert(error.response?.data?.message || 'Login failed');
         }
-        return true;
     }
 
     return(
         <div>
             <form 
-                // onSubmit={handleSubmit} 
+                onSubmit={handleSubmit} 
                 className="card m-4 mx-auto login-styling" 
                 style={{width: 400, padding: 25, backgroundColor: '#171717', color: 'white', borderRadius: '15px'}}>
 
@@ -49,7 +63,7 @@ const Login = () => {
                 <div className="form-group">
                     <label>Password</label>
                     <input 
-                        type="text" 
+                        type="password" 
                         className="form-control" 
                         style={{backgroundColor: '#2b2b2b', color: 'white', borderColor: '#7F7F7F'}} 
                         value={password}
