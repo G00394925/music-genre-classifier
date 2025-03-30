@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './register.css';
 import { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Register = () => {
     const [userName, setUserName] = useState('');
@@ -43,10 +44,14 @@ const Register = () => {
         e.preventDefault();
         if (validateAccount()) {
             try {
-                const response = await axios.post('api/create-account', {
+                const response = await axios.post('/api/create-account', {
                     username: userName,
                     email: email,
-                    password, password
+                    password: password
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
                 })
 
                 if(response.data.success) {
@@ -55,6 +60,8 @@ const Register = () => {
                 }
             } catch(error) {
                 console.error("Registration error: ", error)
+                alert(error.response?.data?.message || 'Registration failed');
+
             }
         }
     }

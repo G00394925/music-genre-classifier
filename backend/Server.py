@@ -91,11 +91,17 @@ def create_account():
     try:
         user = request.get_json()
         user_data = {
-            "username": user.userName,
-            "email": user.email,
-            "password": user.password
+            "username": user['username'],
+            "email": user['email'],
+            "password": user['password']
         }
+        
         users.insert_one(user_data)
+
+        return jsonify({
+            'success': True,
+            'message': 'Account created successfully'
+        })
     except Exception as e:
         print(str(e))
 
