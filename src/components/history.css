@@ -1,0 +1,35 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+th {
+    font-weight: bold;
+    font-size: 20px;
+    border-bottom: 2px solid #444 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-bottom: 10px;
+}
+
+td {
+    padding: 5px;
+    border-bottom: 1px solid #333 !important;
+}
+
+#main-div {
+    background-color: rgb(52, 52, 52);
+    height: 100vh;
+    padding: 20px;
+}
+
+#history-table {
+    background-color: #171717;
+    border-radius: 10px;
+    width: 100%;
+    margin: auto;
+    color: white;
+    text-align: center;
+}

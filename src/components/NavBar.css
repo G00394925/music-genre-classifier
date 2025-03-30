@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Gothic+A1&family=Jersey+20&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 #nav-item {
-    font-family: "Jersey 20", serif;
+    font-family: "Kanit", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 250%;
     margin-left: 10px;
+    text-shadow: 4px 3px 3px rgb(0, 0, 0);
 }
 
 #logo {
-    font-family: "Jersey 20", serif;
+    font-family: "Kanit", sans-serif;
     font-weight: 400;
     font-style: normal;
     font-size: 400%;
@@ -20,8 +21,16 @@
     height: 80px;
 }
 
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
 #nav-item.active {
-    color: rgb(44, 44, 44)
+    color: rgb(8, 133, 216)
 }
 
 #nav-item.inactive {
@@ -29,5 +38,5 @@
 }
 
 #nav-item:hover {
-    color: rgb(44, 44, 44);
+    color: rgb(40, 121, 228);
 }

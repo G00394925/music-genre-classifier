@@ -24,3 +24,7 @@ yarn-error.log*
 
 __pycache__/
 *.pyc
+
+backend/Pep8.py
+
+.env

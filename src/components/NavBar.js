@@ -10,7 +10,7 @@ const NavBar = () => {
     return (
         <Navbar>
             <Container className='nav-container'>
-                <Navbar.Brand href="/" id="logo">LOGO</Navbar.Brand>
+                <Navbar.Brand href="/" id="logo"></Navbar.Brand>
                 <Nav className="ms-auto">
                     <Nav.Link id="nav-item" href="/" className={location.pathname === '/' ? 'active' : 'inactive'}>Home</Nav.Link>
                     <Nav.Link id="nav-item" href="/analyze" className={location.pathname === '/analyze' ? 'active' : 'inactive'}>Analyze</Nav.Link>
