@@ -23,17 +23,9 @@ CORS(app, resources={
 # MongoDB connection
 try:
     client = MongoClient(os.getenv("MONGO_URI")) # MongoDB connection URI
-    # db = client['music_analyzer'] # Database name
-    # analyses = db['analyses'] # Collection name
-    db = client['sample_analytics']
-    collection = db['accounts']
+    db = client['music_analyzer'] # Database name
+    analyses = db['analyses'] # Collection name
     print("\033[92m" + "MongoDB connected" + "\033[0m")
-
-    # DEBUG
-    recent_entries = list(collection.find().limit(3))
-    print("data: ")
-    for entry in recent_entries:
-        print(entry)
 except Exception as e:
     print("\033[31m" + "MongoDB connection error: ", str(e) + "\033[0m")
 
@@ -84,9 +76,9 @@ def analyze():
 def get_history():
     try:
         history = list(analyses.find(
-            {},
-            {'_id': 0}
-        ).sort("timestamp", -1).limit(10))
+            {}, # All documents
+            {'_id': 0} # Exclude id field
+        ).sort("timestamp", -1).limit(10)) # Sorted by timestamp, descending
 
         return jsonify(history)
     

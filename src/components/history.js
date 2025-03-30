@@ -1,9 +1,24 @@
 import { Card } from 'react-bootstrap';
 import axios from 'axios';
 import './history.css';
+import { useEffect, useState } from 'react';
 
 
 const History = () => {
+
+    const [history, setHistory] = useState([]);
+
+    useEffect(() => {
+        axios.get('/api/history')
+        .then(response => {
+            console.log(response.data)
+            setHistory(response.data);
+        })
+        .catch(error => {
+            console.error('There was an error fetching the history!', error);
+        });
+    }, []);
+    
     return (
         <div id="main-div">
             {/* TODO: Add table here */}
@@ -18,13 +33,19 @@ const History = () => {
                                 <th>Energy</th>
                                 <th>Beats</th>
                                 <th>Date</th>
-                                <th>uh</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                
-                            </tr>
+                            {history.map((item, index) => {
+                                <tr key={index}>
+                                    <td>{item.filename}</td>
+                                    <td>{item.prediction}</td>
+                                    <td>{item.features.tempo}</td>
+                                    <td>{item.features.energy}</td>
+                                    <td>{item.features.beats}</td>
+                                    <td>{new Date(item.timestamp).toLocaleDateString}</td>                                
+                                </tr>
+                            })}
                         </tbody>
                     </table>
                 </Card.Body>
