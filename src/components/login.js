@@ -1,23 +1,30 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './register.css';
 import { useState } from 'react';
+import axios from 'axios'; 
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [verifyPass, setVerifyPass] = useState(false);
     const [loggedin, setLoggedin] = useState(false);
 
+    // Verify that given email uses the correct format
     const validateEmail = (email) => {
         return String(email)
-        .toLowerCase()
+        .toLowerCase() // Convert email to lowercase
         .match(
+            // Verify email format
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         );
     }
 
+    // Verify that account details are valid -- correct email, matching passwords
     const validateAccount = () => {
-        
+        if (!validateEmail(email)) {
+            alert('Please enter a valid email address');
+            return false;
+        }
+        return true;
     }
 
     return(
@@ -33,7 +40,8 @@ const Login = () => {
                         type="text" 
                         className="form-control" 
                         style={{backgroundColor: '#2b2b2b', color: 'white', borderColor: '#7F7F7F'}} 
-                        value={email} 
+                        value={email}
+                        required="true"
                         onChange={(e) => setEmail(e.target.value)} 
                     />
                 </div>
@@ -44,7 +52,8 @@ const Login = () => {
                         type="text" 
                         className="form-control" 
                         style={{backgroundColor: '#2b2b2b', color: 'white', borderColor: '#7F7F7F'}} 
-                        value={password} 
+                        value={password}
+                        required="true"
                         onChange={(e) => setPassword(e.target.value)} 
                     />
                 </div>

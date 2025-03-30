@@ -9,24 +9,21 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPass, setRepeatPass] = useState('');
-    const [verifyPass, setVerifyPass] = useState(false);
 
     const navigate = useNavigate()
 
+    // Verify that given email uses the correct format
     const validateEmail = (email) => {
         return String(email)
-        .toLowerCase()
+        .toLowerCase() // Convert email to lowercase
         .match(
+            // Verify email format
             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         );
     }
 
+    // Verify that account details are valid -- correct email, matching passwords
     const validateAccount = () => {
-        if (userName === '' || email === '' || password === '' || repeatPass === '') {
-            alert('Please fill in all fields');
-            return false;
-        }
-
         if (!validateEmail(email)) {
             alert('Please enter a valid email address');
             return false;
@@ -44,6 +41,7 @@ const Register = () => {
         e.preventDefault();
         if (validateAccount()) {
             try {
+                // Send user data to server and await on response from server
                 const response = await axios.post('/api/create-account', {
                     username: userName,
                     email: email,
@@ -61,7 +59,6 @@ const Register = () => {
             } catch(error) {
                 console.error("Registration error: ", error)
                 alert(error.response?.data?.message || 'Registration failed');
-
             }
         }
     }
@@ -79,7 +76,8 @@ const Register = () => {
                         type="text" 
                         className="form-control" 
                         style={{backgroundColor: '#2b2b2b', color: 'white', borderColor: '#7F7F7F'}} 
-                        value={userName} 
+                        value={userName}
+                        required="true"
                         onChange={(e) => setUserName(e.target.value)} 
                     />
                 </div>
@@ -91,6 +89,7 @@ const Register = () => {
                         className="form-control" 
                         style={{backgroundColor: '#2b2b2b', color: 'white', borderColor: '#7F7F7F'}} 
                         value={email} 
+                        required="true"
                         onChange={(e) => setEmail(e.target.value)} 
                     />
                 </div>
@@ -101,7 +100,8 @@ const Register = () => {
                         type="password" 
                         className="form-control" 
                         style={{backgroundColor: '#2b2b2b', color: 'white', borderColor: '#7F7F7F'}} 
-                        value={password} 
+                        value={password}
+                        required="true" 
                         onChange={(e) => setPassword(e.target.value)} 
                     />
                 </div>
@@ -112,10 +112,10 @@ const Register = () => {
                         type="password" 
                         className="form-control" 
                         style={{backgroundColor: '#2b2b2b', color: 'white', borderColor: '#7F7F7F'}} 
-                        value={repeatPass} 
+                        value={repeatPass}
+                        required="true" 
                         onChange={(e) => {
                             setRepeatPass(e.target.value);
-                            setVerifyPass(password === e.target.value);
                         }} 
                     />
                 </div>

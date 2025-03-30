@@ -90,12 +90,21 @@ def get_history():
 def create_account():
     try:
         user = request.get_json()
+
+        # Check if user already exists in database
+        existing_user = user.find_one({'email': user['email']})
+        if existing_user:
+            return jsonify({
+                'success': False,
+                'message': 'Email already registered'
+            }), 400
+
         user_data = {
             "username": user['username'],
             "email": user['email'],
             "password": user['password']
         }
-        
+
         users.insert_one(user_data)
 
         return jsonify({
@@ -104,6 +113,28 @@ def create_account():
         })
     except Exception as e:
         print(str(e))
+
+@app.route('/api/sign-in', methods=['GET'])
+def get_account():
+    try:
+        user_creds = request.get_json()
+
+        existing_user = users.find_one({'email': user_creds['email']})
+        if existing_user:
+            return jsonify({
+                'success': True,
+                'message': 'Logging in. . .'
+            })
+        else:
+            return jsonify({
+                'success': False,
+                'message': 'Incorrect credentials'
+            })
+    except Exception as e:
+        return jsonify({
+            'success': False,
+            'message': str(e)
+        })
 
 
 @app.errorhandler(404)
