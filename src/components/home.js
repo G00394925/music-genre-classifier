@@ -11,7 +11,7 @@ const Home = () => {
 
     return(
         <div id="home-div">
-            <img className="spectrogram" src={spectrogram} alt="Spectrogram" />
+            {/* <img className="spectrogram" src={spectrogram} alt="Spectrogram" /> */}
             <h1 id="home-heading">Define my Track</h1>
             <p id="home-body">Got a song you like? <br/> 
             Well it's time to find out what exactly you're listening to. <br/> 
@@ -27,7 +27,7 @@ const Home = () => {
                     <p>Aquire insights about track features such as tempo and energy</p>
                 </div>
                 <div className='feature-card'>
-                    <h3>Simple to use</h3>
+                    <h3>Simple and Easy to use</h3>
                     <p>All you have to do is drag and drop your audio file to get started!</p>
                 </div>
             <button id="get-started-button" onClick={handleClick}>Get Started</button>
