@@ -61,7 +61,7 @@ const History = () => {
                                         {new Date(item.timestamp).toLocaleDateString()}
                                         <button 
                                             className='delete-btn'
-                                            onClick={handleDelete}
+                                            onClick={() => handleDelete(item._id)}
                                         >
                                             <DeleteIcon />
                                         </button>    
