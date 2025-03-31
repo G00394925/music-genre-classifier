@@ -27,7 +27,9 @@ const Analyze = () => {
         
         // Handle response
         .then(res => {
-            console.log(res)
+            console.log("Full response: ", res.data)
+            console.log("Features: ", res.data.features)
+            setPrediction(res.data)
             setIsLoading(false)
         })
 
@@ -121,14 +123,14 @@ const Analyze = () => {
                     </div>
     
                     {/* Prediction label */}
-                    {prediction && (
+                    {prediction && !isLoading && (
                         <div className="prediction-result">
                             <h3>Genre: <span style={{ color: 'gold' }}>{prediction.message}</span> </h3>
                         </div>
                     )}
                     
                     {/* Features */}
-                    {prediction && (
+                    {prediction && !isLoading && (
                         
                         <div id="features-container">
                             <Card id="feature-card">

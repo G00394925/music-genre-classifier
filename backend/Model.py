@@ -115,4 +115,11 @@ class Model():
         # Predict the genre
         prediction = self.model.predict(features_scaled)
 
-        return prediction[0]
+        return { 
+            "prediction": prediction[0],
+            "features": {
+                "tempo": float(tempo),
+                "energy": float(rmse),
+                "beats": int(len(beats))
+            }
+        }
