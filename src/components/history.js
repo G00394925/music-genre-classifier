@@ -2,6 +2,7 @@ import { Card } from 'react-bootstrap';
 import axios from 'axios';
 import './history.css';
 import { useEffect, useState } from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 const History = () => {
@@ -10,14 +11,28 @@ const History = () => {
 
     // Fetch history from server
     useEffect(() => {
-        axios.get('/api/history')
-        .then(response => {
-            setHistory(response.data); // Set the history state with the response data
-        })
-        .catch(error => {
-            console.error('There was an error fetching the history!', error);
-        });
+        getHistory()
     }, []);
+
+    const getHistory = () => {
+        axios.get('/api/history')
+            .then(response => {
+                setHistory(response.data); // Set the history state with the response data
+            })
+            .catch(error => {
+                console.error('There was an error fetching the history!', error);
+            });
+    }
+
+    const handleDelete = (id) => {
+        axios.delete(`/api/history/${id}`)
+            .then(() => {
+                getHistory()
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }
     
     return (
         <div id="main-div">
@@ -42,7 +57,13 @@ const History = () => {
                                     <td>{item.features.tempo}</td>
                                     <td>{item.features.energy}</td>
                                     <td>{item.features.beats}</td>
-                                    <td>{new Date(item.timestamp).toLocaleDateString()}</td>                                
+                                    <td>{new Date(item.timestamp).toLocaleDateString()}</td>
+                                    <button 
+                                        className='delete-btn'
+                                        onClick={handleDelete}
+                                    >
+                                        <DeleteIcon />
+                                    </button>
                                 </tr>
                             ))}
                         </tbody>

@@ -124,8 +124,10 @@ const Analyze = () => {
     
                     {/* Prediction label */}
                     {prediction && !isLoading && (
-                        <div className="prediction-result">
-                            <h3>Genre: <span style={{ color: 'gold' }}>{prediction.message}</span> </h3>
+                        <div className="prediction-result-container">
+                            <div className="prediction-result">
+                                <h3>Genre: <span style={{ color: 'gold' }}>{prediction.message}</span> </h3>
+                            </div>
                         </div>
                     )}
                     
