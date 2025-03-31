@@ -16,7 +16,6 @@ const Home = () => {
             <p id="home-body">Got a song you like? <br/> 
             Well it's time to find out what exactly you're listening to. <br/> 
             Use our music genre classifier to figure out what it is that makes your song sound so special</p>
-            <button id="get-started-button" onClick={handleClick}>Get Started</button>
 
             <div className="features-container">
                 <div className='feature-card'>
@@ -31,6 +30,7 @@ const Home = () => {
                     <h3>Simple to use</h3>
                     <p>All you have to do is drag and drop your audio file to get started!</p>
                 </div>
+            <button id="get-started-button" onClick={handleClick}>Get Started</button>
             </div>
         </div>     
     )

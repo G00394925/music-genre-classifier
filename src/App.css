@@ -86,9 +86,9 @@ body {
   background-color: white;
   padding: 20px;
   border: none;
-  border-radius: 30px;
+  border-radius: 50px;
   font-size: 150%;
-  margin: 25px 0px;
+  margin: 15px 0px;
   display: block;
   text-align: center;
   animation: fadeInUp 1s ease-out;
