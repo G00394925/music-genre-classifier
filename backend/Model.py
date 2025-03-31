@@ -46,13 +46,13 @@ class Model():
     def train_model(self):
         """
         Data is read from a csv file and then split into training
-        and testing sets. 
-        
+        and testing sets.
+
         Returns:
             model: The trained model
             scaler: The feature scaler
         """
-                
+
         data = pd.read_csv('../data.csv')
 
         # Prepare fetures and labels
@@ -85,10 +85,10 @@ class Model():
     # Predict genre of user uploaded track
     def predict_genre(self, file):
         """
-        This function reads the user uploaded audio file, and 
+        This function reads the user uploaded audio file, and
         extracts features from the track. The features are scaled
         and used to predict the genre.
-        
+
         The features extracted are:
         - Tempo
         - Beats
@@ -99,10 +99,10 @@ class Model():
         - Spectral Rolloff
         - Zero Crossing Rate
         - Mel-frequency cepstral coefficients (MFCC)
-        
+
         Args:
             file: The user-uploaded audio file
-            
+
         Returns:
             prediction: The predicted genre
             features: The extracted features
@@ -150,7 +150,7 @@ class Model():
         # Get track duration
         duration = librosa.get_duration(y=y, sr=sr)
 
-        return { 
+        return {
             "prediction": prediction[0],
             "features": {
                 "tempo": round(float(tempo), 1),

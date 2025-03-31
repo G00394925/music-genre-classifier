@@ -22,10 +22,10 @@ CORS(app, resources={
 
 # MongoDB connection
 try:
-    client = MongoClient(os.getenv("MONGO_URI")) # MongoDB connection URI
-    db = client['music_analyzer'] # Database name
-    analyses = db['analyses'] # Analyses collection
-    users = db['users'] # Registered users collection
+    client = MongoClient(os.getenv("MONGO_URI"))  # MongoDB connection URI
+    db = client['music_analyzer']  # Database name
+    analyses = db['analyses']  # Analyses collection
+    users = db['users']  # Registered users collection
     print("\033[92m" + "MongoDB connected" + "\033[0m")
 except Exception as e:
     print("\033[31m" + "MongoDB connection error: ", str(e) + "\033[0m")
@@ -73,19 +73,21 @@ def analyze():
     except Exception as e:
         return jsonify(message="Error: "+str(e))
 
+
 @app.route('/api/history', methods=['GET'])
 def get_history():
     try:
         history = list(analyses.find(
-            {}, # All documents
-            {'_id': 0} # Exclude id field
-        ).sort("timestamp", -1).limit(10)) # Sorted by timestamp, descending
+            {},  # All documents
+            {'_id': 0}  # Exclude id field
+        ).sort("timestamp", -1).limit(10))  # Sorted by timestamp, descending
 
         return jsonify(history)
-    
+
     except Exception as e:
         return jsonify(message="Error: "+str(e))
-    
+
+
 @app.route('/api/create-account', methods=['POST'])
 def create_account():
     try:
@@ -113,6 +115,7 @@ def create_account():
         })
     except Exception as e:
         print(str(e))
+
 
 @app.route('/api/sign-in', methods=['POST'])
 def get_account():
