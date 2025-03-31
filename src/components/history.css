@@ -44,7 +44,8 @@ tr:hover .delete-btn {
 
 .delete-btn {
     position: absolute;
-    right: -30px;
+    z-index: 1;
+    right: -5px;
     top: 50%;
     transform: translateY(-50%);
     color: white;

@@ -57,13 +57,15 @@ const History = () => {
                                     <td>{item.features.tempo}</td>
                                     <td>{item.features.energy}</td>
                                     <td>{item.features.beats}</td>
-                                    <td>{new Date(item.timestamp).toLocaleDateString()}</td>
-                                    <button 
-                                        className='delete-btn'
-                                        onClick={handleDelete}
-                                    >
-                                        <DeleteIcon />
-                                    </button>
+                                    <td>
+                                        {new Date(item.timestamp).toLocaleDateString()}
+                                        <button 
+                                            className='delete-btn'
+                                            onClick={handleDelete}
+                                        >
+                                            <DeleteIcon />
+                                        </button>    
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
