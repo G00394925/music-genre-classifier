@@ -120,12 +120,14 @@ const Analyze = () => {
                         />
                     </div>
     
+                    {/* Prediction label */}
                     {prediction && (
                         <div className="prediction-result">
                             <h3>Genre: <span style={{ color: 'gold' }}>{prediction.message}</span> </h3>
                         </div>
                     )}
                     
+                    {/* Features */}
                     {prediction && (
                         
                         <div id="features-container">
