@@ -5,40 +5,39 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'; 
 
 const Login = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [loggedin, setLoggedin] = useState(false);
+    const [user, setUser] = useState({
+        email: '',
+        password: ''
+    });
 
     const navigate = useNavigate()
 
-    // Verify that given email uses the correct format
-    const validateEmail = (email) => {
-        return String(email)
-        .toLowerCase() // Convert email to lowercase
-        .match(
-            // Verify email format
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        );
-    }
+    const handleInput = (e) => {
+        const { name, value } = e.target;
+        setUser((prev) => ({
+          ...prev,
+          [name]: value,
+        }));
+      }
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        try{
-            const response = await axios.post('/api/sign-in', {
-                email: email,
-                password: password
-            })
+        // try{
+        //     const response = await axios.post('/api/sign-in', {
+        //         email: email,
+        //         password: password
+        //     })
     
-            if (response.data.success) {
-                setLoggedin(true)
-                navigate('/analyze')
-            } 
+        //     if (response.data.success) {
+        //         setLoggedin(true)
+        //         navigate('/analyze')
+        //     } 
 
-        } catch(error) {
-            console.error("Login error: ", error)
-            alert(error.response?.data?.message || 'Login failed');
-        }
+        // } catch(error) {
+        //     console.error("Login error: ", error)
+        //     alert(error.response?.data?.message || 'Login failed');
+        // }
     }
 
     return(
@@ -51,12 +50,12 @@ const Login = () => {
                 <div className="form-group">
                     <label>Email</label>
                     <input 
-                        type="text" 
+                        type="email" 
                         className="form-control" 
                         style={{backgroundColor: '#2b2b2b', color: 'white', borderColor: '#7F7F7F'}} 
-                        value={email}
+                        name="email"
                         required="true"
-                        onChange={(e) => setEmail(e.target.value)} 
+                        onChange={(e) => handleInput(e.target.value)} 
                     />
                 </div>
 
@@ -66,9 +65,9 @@ const Login = () => {
                         type="password" 
                         className="form-control" 
                         style={{backgroundColor: '#2b2b2b', color: 'white', borderColor: '#7F7F7F'}} 
-                        value={password}
+                        name="password"
                         required="true"
-                        onChange={(e) => setPassword(e.target.value)} 
+                        onChange={(e) => handleInput(e.target.value)} 
                     />
                 </div>
 
