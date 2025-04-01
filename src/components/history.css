@@ -23,9 +23,6 @@ td {
     border-bottom: 1px solid #333 !important;
 }
 
-tr:hover {
-    background-color: #333;
-}
 
 tr:hover .delete-btn {
     opacity: 1;
@@ -44,6 +41,29 @@ tr:hover .delete-btn {
     margin: auto;
     color: white;
     text-align: center;
+}
+
+.expanded-table {
+    padding: 20px;
+    background-color: #222;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.inner-table {
+    width: 100%;
+}
+
+.inner-table th, 
+.inner-table td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #444;
+}
+
+.data-entry:hover {
+    background-color: #333;
+    transition: background-color 0.2s ease;
 }
 
 .delete-btn {

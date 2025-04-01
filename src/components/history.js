@@ -8,12 +8,14 @@ import DeleteIcon from '@mui/icons-material/Delete';
 const History = () => {
 
     const [history, setHistory] = useState([]);
+    const [expandedRow, setExpandedRow] = useState(false);
 
     // Fetch history from server
     useEffect(() => {
         getHistory()
     }, []);
 
+    // Load the history
     const getHistory = () => {
         axios.get('/api/history')
             .then(response => {
@@ -24,14 +26,19 @@ const History = () => {
             });
     }
 
+    // Delete history
     const handleDelete = () => {
         axios.delete('/api/history')
             .then(() => {
-                getHistory()
+                getHistory() // Reload history
             })
             .catch(error => {
                 console.error(error)
             })
+    }
+
+    const toggleRow = (index) => {
+        setExpandedRow(expandedRow === index ? null : index);
     }
     
     return (
@@ -59,16 +66,40 @@ const History = () => {
                         </thead>
                         <tbody>
                             {history.map((item, index) => (
-                                <tr key={index}>
-                                    <td>{item.filename}</td>
-                                    <td>{item.prediction}</td>
-                                    <td>{item.features.tempo}</td>
-                                    <td>{item.features.energy}</td>
-                                    <td>{item.features.beats}</td>
-                                    <td>
-                                        {new Date(item.timestamp).toLocaleDateString()}
-                                    </td>
-                                </tr>
+                                <>
+                                    <tr 
+                                        key={index} 
+                                        className='data-entry'
+                                        onClick={() => toggleRow(index)}    
+                                    >
+                                        <td>{item.filename}</td>
+                                        <td>{item.prediction}</td>
+                                        <td>{item.features.tempo}</td>
+                                        <td>{item.features.energy}</td>
+                                        <td>{item.features.beats}</td>
+                                        <td>{new Date(item.timestamp).toLocaleDateString()}</td>
+                                    </tr>
+                                    {expandedRow === index && (
+                                        <tr>
+                                            <td colSpan="6">
+                                                <div className="expanded-table">
+                                                    <table className="inner-table">
+                                                        <thead>
+                                                            <th>Extra stuff</th>
+                                                            <th>Extra thing</th>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Thing</td>
+                                                                <td>Another thing</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    )}
+                                </>
                             ))}
                         </tbody>
                     </table>
