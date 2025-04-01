@@ -23,6 +23,10 @@ td {
     border-bottom: 1px solid #333 !important;
 }
 
+tr:hover {
+    background-color: #333;
+}
+
 tr:hover .delete-btn {
     opacity: 1;
 }

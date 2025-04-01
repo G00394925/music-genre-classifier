@@ -24,8 +24,8 @@ const History = () => {
             });
     }
 
-    const handleDelete = (id) => {
-        axios.delete(`/api/history/${id}`)
+    const handleDelete = () => {
+        axios.delete('/api/history')
             .then(() => {
                 getHistory()
             })
@@ -46,7 +46,15 @@ const History = () => {
                                 <th>Tempo</th>
                                 <th>Energy</th>
                                 <th>Beats</th>
-                                <th>Date</th>
+                                <th>
+                                    Date
+                                    <button 
+                                        className='delete-btn'
+                                        onClick={() => handleDelete()}
+                                    >
+                                        <DeleteIcon />
+                                    </button>    
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,12 +67,6 @@ const History = () => {
                                     <td>{item.features.beats}</td>
                                     <td>
                                         {new Date(item.timestamp).toLocaleDateString()}
-                                        <button 
-                                            className='delete-btn'
-                                            onClick={() => handleDelete(item._id)}
-                                        >
-                                            <DeleteIcon />
-                                        </button>    
                                     </td>
                                 </tr>
                             ))}

@@ -88,6 +88,17 @@ def get_history():
         return jsonify(message="Error: "+str(e))
 
 
+@app.route('/api/history', methods=['DELETE'])
+def delete_history():
+    try:
+        analyses.delete_many({})
+        return jsonify({
+            "success": True,
+            "message": "History has been cleared"})
+    except Exception as e:
+        return str(e)
+
+
 @app.route('/api/create-account', methods=['POST'])
 def create_account():
     try:
