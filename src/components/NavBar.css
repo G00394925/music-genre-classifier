@@ -30,7 +30,7 @@
 }
 
 #nav-item.active {
-    color: rgb(8, 133, 216)
+    color: gold
 }
 
 #nav-item.inactive {
@@ -38,5 +38,5 @@
 }
 
 #nav-item:hover {
-    color: rgb(40, 121, 228);
+    color: gold;
 }
