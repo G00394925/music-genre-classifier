@@ -23,11 +23,6 @@ td {
     border-bottom: 1px solid #333 !important;
 }
 
-
-tr:hover .delete-btn {
-    opacity: 1;
-}
-
 #main-div {
     background-color: rgb(52, 52, 52);
     height: 100vh;
