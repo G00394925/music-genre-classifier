@@ -69,14 +69,13 @@ tr:hover .delete-btn {
 .delete-btn {
     position: absolute;
     z-index: 1;
-    right: -5px;
-    top: 50%;
+    right: 5px;
+    top: 30%;
     transform: translateY(-50%);
     color: white;
     background-color: #ee0e0e;
     border: none;
     padding: 7px;
-    opacity: 0;
     border-radius: 4px;
     cursor: pointer;
     transition: opacity 0.2s;
