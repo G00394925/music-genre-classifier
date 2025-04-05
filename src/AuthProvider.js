@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
@@ -8,6 +8,16 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(localStorage.getItem("site") || "")
     const navigate = useNavigate()
+
+    useEffect(() => {
+        const storedToken = localStorage.getItem("site");
+        const storedUser = localStorage.getItem("user");
+
+        if (storedToken === "logged-in" && storedUser) {
+            setUser(JSON.parse(storedUser));
+            setToken(storedToken);
+        }
+    }, [])
 
     const handleLogin = async (data) => {
         try{
@@ -21,10 +31,16 @@ const AuthProvider = ({ children }) => {
             if (response.data.success) {
                 console.log("Login successful")
                 console.log(response.data)
-                setUser({ email: data.email});
+
+                const userData = { email: data.email};
+                
+                setUser(userData)
+                setToken("logged-in")
 
                 localStorage.setItem("site", "logged-in")
-                setToken("logged-in")
+                localStorage.setItem("user", JSON.stringify(userData))
+
+                // Redirect to the analyze page
                 navigate("/analyze")
 
             } else {
@@ -41,6 +57,7 @@ const AuthProvider = ({ children }) => {
         setUser(null)
         setToken("")
         localStorage.removeItem("site")
+        localStorage.removeItem("user")
         navigate("/login")
     }
 

@@ -7,7 +7,7 @@ import { useAuth } from '../AuthProvider.js';
 
 const NavBar = () => {
     const location = useLocation();
-    const { user, logOut } = useAuth();
+    const { user } = useAuth();
 
     return (
         <Navbar>
