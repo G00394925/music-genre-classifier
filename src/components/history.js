@@ -85,8 +85,10 @@ const History = () => {
                                                 <div className="expanded-table">
                                                     <table className="inner-table">
                                                         <thead>
-                                                            <th>Extra stuff</th>
-                                                            <th>Extra thing</th>
+                                                            <tr>
+                                                                <th>Super thing</th>
+                                                                <th>Extra thing</th>
+                                                            </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr>

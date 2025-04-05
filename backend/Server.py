@@ -102,11 +102,13 @@ def delete_history():
 @app.route('/api/create-account', methods=['POST'])
 def create_account():
     try:
+        print("Creating account...")
         user = request.get_json()
+        print(f"User data: {user}")
 
-        # Check if user already exists in database
-        existing_user = user.find_one({'email': user['email']})
+        existing_user = users.find_one({'email': user['email']})
         if existing_user:
+            print(f"Email already registered: {user['email']}")
             return jsonify({
                 'success': False,
                 'message': 'Email already registered'
@@ -125,25 +127,39 @@ def create_account():
             'message': 'Account created successfully'
         })
     except Exception as e:
-        print(str(e))
+        print(f"Registration error: {str(e)}")
+        return jsonify({
+            'success': False,
+            'message': str(e)
+        }), 500
 
 
+# Sign user into application
 @app.route('/api/sign-in', methods=['POST'])
 def get_account():
     try:
-        user_creds = request.get_json()
-
-        existing_user = users.find_one({'email': user_creds['email']})
-        if existing_user:
+        user_creds = request.get_json()  # Get user credentials from request
+        
+        # Check if user exists in database
+        existing_user = users.find_one({
+            'email': user_creds['email'],
+            'password': user_creds['password']
+        })  
+        
+        # User exists
+        if existing_user:  
             return jsonify({
                 'success': True,
                 'message': 'Logging in. . .'
             })
+        
+        # User does not exist
         else:
             return jsonify({
                 'success': False,
                 'message': 'Incorrect credentials'
             })
+        
     except Exception as e:
         return jsonify({
             'success': False,

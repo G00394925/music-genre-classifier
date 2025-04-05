@@ -11,21 +11,25 @@ const AuthProvider = ({ children }) => {
 
     const handleLogin = async (data) => {
         try{
-            const response = await axios.post('http://localhost:5000/api/sign-in', 
-                data, 
-                {
+            const response = await axios.post('/api/sign-in', data, {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 }
             );
 
-            if (response.data) {
-                setUser(response.data.user);
-                setToken(response.token)
-                localStorage.setItem("site", response.data.token)
-                navigate("/analyze")
+            if (response.data.success) {
+                console.log("Login successful")
+                console.log(response.data)
+                setUser({ email: data.email});
+
+                localStorage.setItem("site", "logged-in")
+                setToken("logged-in")
+
+            } else {
+                throw new Error(response.data.message)
             }
+
         } catch(error) {
             console.error(error)
             throw error;
@@ -39,8 +43,11 @@ const AuthProvider = ({ children }) => {
         navigate("/login")
     }
 
-    return <AuthContext.Provider value={{ token, user, handleLogin, logOut}}>{children}</AuthContext.Provider>
-};
+    return (
+        <AuthContext.Provider value={{ token, user, handleLogin, logOut}}>
+            {children}
+        </AuthContext.Provider>
+)};
 
 export default AuthProvider
 

@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './register.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthProvider';
 import axios from 'axios'; 
 
 const Login = () => {
@@ -9,6 +10,8 @@ const Login = () => {
         email: '',
         password: ''
     });
+
+    const { handleLogin } = useAuth();
 
     const navigate = useNavigate()
 
@@ -23,21 +26,22 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        // try{
-        //     const response = await axios.post('/api/sign-in', {
-        //         email: email,
-        //         password: password
-        //     })
+         try {
+             const response = await axios.post('/api/sign-in', {
+                 email: user.email,
+                 password: user.password
+             })
     
-        //     if (response.data.success) {
-        //         setLoggedin(true)
-        //         navigate('/analyze')
-        //     } 
+             if (response.data.success) {
+                 await handleLogin(user)
+             } else {
+                alert(response.data.message)
+             }
 
-        // } catch(error) {
-        //     console.error("Login error: ", error)
-        //     alert(error.response?.data?.message || 'Login failed');
-        // }
+         } catch(error) {
+             console.error("Login error: ", error)
+             alert(error.response?.data?.message || 'Login failed');
+        }
     }
 
     return(
@@ -54,8 +58,9 @@ const Login = () => {
                         className="form-control" 
                         style={{backgroundColor: '#2b2b2b', color: 'white', borderColor: '#7F7F7F'}} 
                         name="email"
-                        required="true"
-                        onChange={(e) => handleInput(e.target.value)} 
+                        required
+                        value={user.email}
+                        onChange={handleInput} 
                     />
                 </div>
 
@@ -66,8 +71,9 @@ const Login = () => {
                         className="form-control" 
                         style={{backgroundColor: '#2b2b2b', color: 'white', borderColor: '#7F7F7F'}} 
                         name="password"
-                        required="true"
-                        onChange={(e) => handleInput(e.target.value)} 
+                        required
+                        value={user.password}
+                        onChange={handleInput} 
                     />
                 </div>
 

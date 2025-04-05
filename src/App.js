@@ -11,8 +11,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
-    // <AuthProvider>
-      <Router>
+    <Router>
+      <AuthProvider>
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -21,8 +21,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/history" element={<History />} />
         </Routes>
+        </AuthProvider>
       </Router>
-//    </AuthProvider>
   );
 }
 
