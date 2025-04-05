@@ -15,8 +15,8 @@ const NavBar = () => {
                 <Navbar.Brand href="/" id="logo"></Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link id="nav-item" href="/" className={location.pathname === '/' ? 'active' : 'inactive'}>Home</Nav.Link>
-                    <Nav.Link id="nav-item" href="/analyze" className={location.pathname === '/analyze' ? 'active' : 'inactive'}>Analyze</Nav.Link>
-                    <Nav.Link id="nav-item" href="/history" className={location.pathname === '/history' ? 'active' : 'inactive'}>History</Nav.Link>
+                    <Nav.Link id="nav-item" href={user ? "/analyze" : "/login"} className={location.pathname === '/analyze' ? 'active' : 'inactive'}>Analyze</Nav.Link>
+                    <Nav.Link id="nav-item" href={user ? "/history" : "/login"} className={location.pathname === '/history' ? 'active' : 'inactive'}>History</Nav.Link>
                     {user ? (
                         <Nav.Link id="nav-item" href="/account" className={location.pathname === '/account' ? 'active' : 'inactive'}>Account</Nav.Link>
                     ) : (
