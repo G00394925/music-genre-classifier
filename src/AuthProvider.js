@@ -58,7 +58,8 @@ const AuthProvider = ({ children }) => {
         setToken("")
         localStorage.removeItem("site")
         localStorage.removeItem("user")
-        navigate("/login")
+        console.log("Logged out")
+        navigate("/")
     }
 
     return (

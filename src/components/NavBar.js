@@ -7,7 +7,7 @@ import { useAuth } from '../AuthProvider.js';
 
 const NavBar = () => {
     const location = useLocation();
-    const { user } = useAuth();
+    const { user, logOut } = useAuth();
 
     return (
         <Navbar>
@@ -18,7 +18,7 @@ const NavBar = () => {
                     <Nav.Link id="nav-item" href={user ? "/analyze" : "/login"} className={location.pathname === '/analyze' ? 'active' : 'inactive'}>Analyze</Nav.Link>
                     <Nav.Link id="nav-item" href={user ? "/history" : "/login"} className={location.pathname === '/history' ? 'active' : 'inactive'}>History</Nav.Link>
                     {user ? (
-                        <Nav.Link id="nav-item" href="/account" className={location.pathname === '/account' ? 'active' : 'inactive'}>Account</Nav.Link>
+                        <Nav.Link id="nav-item" onClick={logOut} className={location.pathname === '/account' ? 'active' : 'inactive'}>Log out</Nav.Link>
                     ) : (
                         <Nav.Link id="nav-item" href="/login" className={location.pathname === '/login' ? 'active' : 'inactive'}>Log in</Nav.Link>
                     )}

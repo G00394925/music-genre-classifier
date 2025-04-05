@@ -55,6 +55,7 @@ def analyze():
     try:
         file = (request.files['user-track'])
         result = m.predict_genre(file)
+        print(f"User: {request.form.get('user_id')}")
 
         # Save the analysis to MongoDB
         analysis_data = {
