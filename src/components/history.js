@@ -1,4 +1,5 @@
 import { Card } from 'react-bootstrap';
+import React from 'react';
 import axios from 'axios';
 import './history.css';
 import { useEffect, useState } from 'react';

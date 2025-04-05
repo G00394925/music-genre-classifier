@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthProvider.js';
 import spectrogram from '../assets/spectrogram.jpg';
 
 const Home = () => {
+    const { user } = useAuth();
+
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate('/register');
+        if (user) {
+            navigate('/analyze');
+        } else {
+            navigate('/login');
+        }
     }
 
     return(
