@@ -25,6 +25,7 @@ const AuthProvider = ({ children }) => {
 
                 localStorage.setItem("site", "logged-in")
                 setToken("logged-in")
+                navigate("/analyze")
 
             } else {
                 throw new Error(response.data.message)

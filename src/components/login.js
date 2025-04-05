@@ -11,9 +11,8 @@ const Login = () => {
         password: ''
     });
 
+    // Handle login process in AuthProvider
     const { handleLogin } = useAuth();
-
-    const navigate = useNavigate()
 
     const handleInput = (e) => {
         const { name, value } = e.target;
@@ -24,14 +23,16 @@ const Login = () => {
       }
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault() 
 
+        // Validate email and password
          try {
              const response = await axios.post('/api/sign-in', {
                  email: user.email,
                  password: user.password
              })
-    
+             
+             // Login successful -- handle login in AuthProvider
              if (response.data.success) {
                  await handleLogin(user)
              } else {
