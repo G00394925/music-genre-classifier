@@ -17,7 +17,11 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 import pandas as pd
+import matplotlib.pyplot as plt
+import base64
+from io import BytesIO
 import librosa
+import librosa.display
 
 
 class Model():
@@ -150,12 +154,33 @@ class Model():
         # Get track duration
         duration = librosa.get_duration(y=y, sr=sr)
 
+        # Get a waveform image of the track
+        plt.figure(figsize=(10, 5))
+        librosa.display.waveshow(y, sr=sr, color='blue', )
+        
+        # Remove axis, borders and other elements -- only the waveform is wanted
+        plt.axis('off')
+        plt.xticks([])
+        plt.yticks([])
+        plt.margins(0, 0)
+        plt.tight_layout(pad=0)
+        plt.subplots_adjust(left=0, right=1, top=1, bottom=0, hspace=0, wspace=0)
+
+        # Convert to base64-encoded string -- allows image to be embedded in HTML
+        buffer = BytesIO()
+        plt.savefig(buffer, format='png')
+        buffer.seek(0)
+        waveform_img = base64.b64encode(buffer.getvalue()).decode('utf-8')
+        plt.close()  # Close the plot to free memory
+
+
         return {
             "prediction": prediction[0],
             "features": {
                 "tempo": round(float(tempo), 1),
                 "energy": round(float(rmse), 3),
                 "beats": int(len(beats)),
-                "duration": round(duration, 2)
+                "duration": round(duration, 2),
+                "waveform_img": f"data:image/png;base64,{waveform_img}"
             }
         }

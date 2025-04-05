@@ -11,6 +11,11 @@ const AudioPlayer = ({ audioFile, prediction }) => {
     const [audioUrl, setAudioUrl] = useState(null)
     const audioRef = useRef(null)
 
+    // Set image to display -- shows waveform if available, otherwise shows a placeholder
+    const displayImage = prediction && prediction.features && prediction.features.waveform_img
+        ? prediction.features.waveform_img
+        : placeholderImg;
+
     useEffect(() => {
         // Remove previous audio URL
         if(audioUrl) {
@@ -50,7 +55,7 @@ const AudioPlayer = ({ audioFile, prediction }) => {
         </Card.Title>
 
         <Card.Body style={{ paddingTop: '5px'}}>
-            <Card.Img src={placeholderImg} alt="Card image" />
+            <Card.Img src={displayImage} alt="Card image" />
 
             {/* Play button -- Decided on a customised checkbox to toggle playback */}
             <Checkbox 

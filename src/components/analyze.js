@@ -24,7 +24,7 @@ const Analyze = () => {
         setIsLoading(true) // Start loading bar
 
         // Send file to server for analysis
-        axios.post('http://localhost:5000/api/analyze', file, user.email) 
+        axios.post('http://localhost:5000/api/analyze', file) 
         
         // Handle response
         .then(res => {
