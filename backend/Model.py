@@ -156,7 +156,7 @@ class Model():
 
         # Get a waveform image of the track
         plt.figure(figsize=(10, 5))
-        librosa.display.waveshow(y, sr=sr, color='blue', )
+        librosa.display.waveshow(y, sr=sr, color='gold', )
         
         # Remove axis, borders and other elements -- only the waveform is wanted
         plt.axis('off')
@@ -168,7 +168,7 @@ class Model():
 
         # Convert to base64-encoded string -- allows image to be embedded in HTML
         buffer = BytesIO()
-        plt.savefig(buffer, format='png')
+        plt.savefig(buffer, format='png', bbox_inches='tight', pad_inches=0, transparent=True)
         buffer.seek(0)
         waveform_img = base64.b64encode(buffer.getvalue()).decode('utf-8')
         plt.close()  # Close the plot to free memory
