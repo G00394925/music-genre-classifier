@@ -52,8 +52,10 @@ td {
 .inner-table th, 
 .inner-table td {
     padding: 8px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #444;
+    width: 33.33%;
+    vertical-align: middle;
 }
 
 .data-entry:hover {
@@ -81,8 +83,9 @@ td {
 }
 
 .feature-img {
-    margin: 10px;
-    max-width: 600px;
+    display: block;
+    margin: 0 auto;
+    max-width: 300px;
     max-height: 400px;
     width: auto;
     height: auto;

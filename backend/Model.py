@@ -155,7 +155,7 @@ class Model():
         prediction = self.model.predict(features_scaled)
 
         # Get track duration
-        duration = librosa.get_duration(y=y, sr=sr)
+        duration = librosa.get_duration(y=y, sr=sr) 
 
         # Get a waveform image of the track
         plt.figure(figsize=(10, 5))
@@ -193,6 +193,24 @@ class Model():
         spectrogram_img = base64.b64encode(spec_buffer.getvalue()).decode('utf-8')
         plt.close()
 
+        # Get a chromagram image of the track
+        plt.figure(figsize=(10, 5))
+        chroma = librosa.feature.chroma_cqt(y=y, sr=sr)
+        librosa.display.specshow(chroma, x_axis='time', y_axis='chroma')
+        plt.axis('off')
+        plt.xticks([])
+        plt.yticks([])
+        plt.margins(0, 0)
+        plt.tight_layout(pad=0)
+        plt.subplots_adjust(left=0, right=1, top=1, bottom=0, hspace=0, wspace=0)
+
+        chroma_buffer = BytesIO()
+        plt.savefig(chroma_buffer, format='png', bbox_inches='tight', pad_inches=0, transparent=True)
+        chroma_buffer.seek(0)
+        chroma_img = base64.b64encode(chroma_buffer.getvalue()).decode('utf-8')
+        plt.close()
+
+
         return {
             "prediction": prediction[0],
             "features": {
@@ -202,6 +220,7 @@ class Model():
                 "duration": round(duration, 2),
                 "waveform_img": f"data:image/png;base64,{waveform_img}",
                 "spectrogram_img": f"data:image/png;base64,{spectrogram_img}",
+                "chroma_img": f"data:image/png;base64,{chroma_img}"
             },
             "accuracy": accuracy
         }

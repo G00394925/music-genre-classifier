@@ -89,12 +89,14 @@ const History = () => {
                                                             <tr>
                                                                 <th>Waveform</th>
                                                                 <th>Spectrogram</th>
+                                                                <th>Chromagram</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td><img className="feature-img" src={item.features.waveform_img} /></td>
-                                                                <td><img className="feature-img" src={item.features.spectrogram_img} /></td>
+                                                                <td><img className="feature-img" src={item.features.waveform_img}/></td>
+                                                                <td><img className="feature-img" src={item.features.spectrogram_img}/></td>
+                                                                <td><img className="feature-img" src={item.features.chroma_img}/></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
