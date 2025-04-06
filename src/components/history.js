@@ -94,9 +94,39 @@ const History = () => {
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td><img className="feature-img" src={item.features.waveform_img}/></td>
-                                                                <td><img className="feature-img" src={item.features.spectrogram_img}/></td>
-                                                                <td><img className="feature-img" src={item.features.chroma_img}/></td>
+                                                                <td>
+                                                                    <div className="image-container">
+                                                                        <img className="feature-img" src={item.features.waveform_img}/>
+                                                                        <div className="info-overlay">
+                                                                            <p>
+                                                                                A waveform is a graphical representation of a signal over time. It represents
+                                                                                an amplitude of the signal against time. 
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                <div className="image-container">
+                                                                        <img className="feature-img" src={item.features.spectrogram_img}/>
+                                                                        <div className="info-overlay">
+                                                                            <p>
+                                                                                Spectrograms show the visual representation of audio, showing frequency, amplitude, 
+                                                                                and time on the one graph.   
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                <div className="image-container">
+                                                                        <img className="feature-img" src={item.features.chroma_img}/>
+                                                                        <div className="info-overlay">
+                                                                            <p>
+                                                                                Chromagrams show the pitch class distribution over time. It captures
+                                                                                the harmonic melodic characteristics of music.
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
