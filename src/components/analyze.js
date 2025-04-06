@@ -91,6 +91,7 @@ const Analyze = () => {
                 </div>
 
                 <div id='right-div'>
+                    
                     {/* File upload */}
                     <div id='upload-box'>
                         <FilePond
@@ -139,7 +140,7 @@ const Analyze = () => {
                             <Card id="feature-card">
                                 <MusicNoteIcon style={{ color: 'gold', width: '40px', height: '40px' }}/>
                                 <Card.Title>Tempo</Card.Title>
-                                <Card.Subtitle>{prediction.features.tempo} BPM </Card.Subtitle>
+                                <Card.Subtitle>{prediction.features.tempo}</Card.Subtitle>
                             </Card>
 
                             <Card id="feature-card">

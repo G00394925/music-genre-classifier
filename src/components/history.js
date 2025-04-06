@@ -87,14 +87,14 @@ const History = () => {
                                                     <table className="inner-table">
                                                         <thead>
                                                             <tr>
-                                                                <th>Super thing</th>
-                                                                <th>Extra thing</th>
+                                                                <th>Waveform</th>
+                                                                <th>Spectrogram</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
                                                             <tr>
-                                                                <td>Thing</td>
-                                                                <td>Another thing</td>
+                                                                <td><img className="feature-img" src={item.features.waveform_img} /></td>
+                                                                <td><img className="feature-img" src={item.features.spectrogram_img} /></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
