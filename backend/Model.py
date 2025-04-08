@@ -62,9 +62,9 @@ class Model():
 
         global accuracy
 
-        # Prepare fetures and labels
-        X = data.drop(['filename', 'label'], axis=1)
-        y = data['label']
+        # Remove unnecessary columns
+        X = data.drop(['filename', 'label'], axis = 1) # Features
+        y = data['label'] # Target variable (genre)
 
         # Split data into training and testing sets
         X_train, X_test, y_train, y_test = train_test_split(
@@ -92,9 +92,12 @@ class Model():
     # Predict genre of user uploaded track
     def predict_genre(self, file):
         """
-        This function reads the user uploaded audio file, and
-        extracts features from the track. The features are scaled
-        and used to predict the genre.
+        Reads the user uploaded audio file, and extracts features 
+        from the track. The features are scaled and used to 
+        predict the genre. Among those features include a few graphical
+        representations of the track, being a waveform, spectrogram and
+        chromagram. These are then converted to base64-encoded strings
+        to be embedded in HTML.
 
         The features extracted are:
         - Tempo
@@ -106,6 +109,10 @@ class Model():
         - Spectral Rolloff
         - Zero Crossing Rate
         - Mel-frequency cepstral coefficients (MFCC)
+        - Duration
+        - Waveform
+        - Spectrogram
+        - Chromagram
 
         Args:
             file: The user-uploaded audio file
@@ -114,6 +121,10 @@ class Model():
             prediction: The predicted genre
             features: The extracted features
         """
+
+        # Load the audio file
+        # y = audio time series -- a numpy array of the raw audio data
+        # sr = sampling rate -- represents the number of data points sampled per second
         y, sr = librosa.load(file, sr=None)
 
         # Initialize features array
@@ -128,22 +139,29 @@ class Model():
         chroma_stft = float(librosa.feature.chroma_stft(y=y, sr=sr).mean())
         features.append(chroma_stft)
 
+        # Root Mean Square Energy (RMSE) -- A measure of the "energy" or loudness of the audio signal
         rmse = float(librosa.feature.rms(y=y).mean())
         features.append(rmse)
 
+        # Spectral centroid -- indicates whether the sound contains more high or low frequencies
         spectral_centroid = float(librosa.feature.spectral_centroid(y=y, sr=sr).mean())
         features.append(spectral_centroid)
 
+        # Spectral bandwidth -- measures the width of the range of frequencies in the sound
         spectral_bandwidth = float(librosa.feature.spectral_bandwidth(y=y, sr=sr).mean())
         features.append(spectral_bandwidth)
 
+        # Spectral rolloff -- Distinguishes between harmonic and non-harmonic content
         rolloff = float(librosa.feature.spectral_rolloff(y=y, sr=sr).mean())
         features.append(rolloff)
 
+        # Zero crossing rate -- The rate at which the audio signal crosses the zero amplitude line
+        # (changes from positive to negative or vice versa). Higher for noisy/percussive sounds.
         zero_crossing_rate = float(librosa.feature.zero_crossing_rate(y).mean())
         features.append(zero_crossing_rate)
 
-        # MFCC (Mel-frequency cepstral coefficients)
+        # MFCC (Mel-frequency cepstral coefficients) -- These are audio features used in music
+        # and speech recognition. They represent the short-term power spectrum of sound.
         mfccs = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=20)
         for i in range(20):
             features.append(float(mfccs[i].mean()))

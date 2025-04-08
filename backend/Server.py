@@ -1,6 +1,29 @@
+"""
+Flask server for the Music Genre Classifier app.
+
+This is a server that provides API endoings for
+1. Analyzing a music track
+2. Retrieving the analysis history from a database
+3. User Authentication (registration, login)
+
+Upon startup, the server connects to a MongoDB database of which
+stores the analysis history and registered users.
+
+It then initializes a machine learning model that is used to
+analyze the music tracks.
+
+Dependencies:
+- Flask, Flask-CORS
+- MongoDB
+- librosa
+- Model class
+
+
+
+"""
+
 from flask import Flask, request, send_from_directory, jsonify
 from flask_cors import CORS
-import numpy as np
 import datetime
 import librosa
 from pymongo import MongoClient
@@ -75,6 +98,7 @@ def analyze():
         return jsonify(message="Error: "+str(e))
 
 
+# Retrieve analysis history from database
 @app.route('/api/history', methods=['GET'])
 def get_history():
     try:
@@ -89,6 +113,7 @@ def get_history():
         return jsonify(message="Error: "+str(e))
 
 
+# Delete analysis history
 @app.route('/api/history', methods=['DELETE'])
 def delete_history():
     try:
@@ -100,6 +125,7 @@ def delete_history():
         return str(e)
 
 
+# Create user account
 @app.route('/api/create-account', methods=['POST'])
 def create_account():
     try:
