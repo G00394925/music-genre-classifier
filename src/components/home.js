@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthProvider.js';
+import './home.css'
 
 const Home = () => {
     const { user } = useAuth(); // Get user from AuthProvider

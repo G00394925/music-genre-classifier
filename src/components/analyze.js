@@ -9,11 +9,20 @@ import { Card } from 'react-bootstrap';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import GraphicEqIcon from '@mui/icons-material/GraphicEq';
 import WaveformIcon from '@mui/icons-material/Whatshot';
+import { useAuth } from '../AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 const Analyze = () => {
     const [file, setFile] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [prediction, setPrediction] = useState(null)
+    const navigate = useNavigate()
+    const { user } = useAuth()
+
+    // Redirect to login if user is not logged in
+    if (!user) {
+        navigate('/login')
+    }
 
     const handleFile = (files) => {
         const file = files[0]?.file // Since FilePond returns an array of files, we take the first one

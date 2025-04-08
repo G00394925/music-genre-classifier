@@ -4,11 +4,20 @@ import axios from 'axios';
 import './history.css';
 import { useEffect, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useAuth } from '../AuthProvider';
+import { useNavigate } from 'react-router-dom';
 
 
 const History = () => {
     const [history, setHistory] = useState([]);
     const [expandedRow, setExpandedRow] = useState(false);
+    const navigate = useNavigate()
+    const { user } = useAuth()
+
+    // Redirect to login if user is not logged in
+    if (!user) {
+        navigate('/login')
+    }
 
     // Fetch history from server
     useEffect(() => {
