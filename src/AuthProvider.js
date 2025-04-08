@@ -10,6 +10,7 @@ const AuthProvider = ({ children }) => {
     const navigate = useNavigate()
 
     useEffect(() => {
+        // Get the token and user from local storage to check if the user is logged in
         const storedToken = localStorage.getItem("site");
         const storedUser = localStorage.getItem("user");
 
@@ -37,6 +38,7 @@ const AuthProvider = ({ children }) => {
                 setUser(userData)
                 setToken("logged-in")
 
+                // Store the token and user data in local storage
                 localStorage.setItem("site", "logged-in")
                 localStorage.setItem("user", JSON.stringify(userData))
 
@@ -53,6 +55,7 @@ const AuthProvider = ({ children }) => {
         }
     }
 
+    // Handle logout -- Remove the token and user data from local storage
     const logOut = () => {
         setUser(null)
         setToken("")
@@ -69,7 +72,6 @@ const AuthProvider = ({ children }) => {
 )};
 
 export default AuthProvider
-
 export const useAuth = () => {
     return useContext(AuthContext)
 }

@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthProvider.js';
-import spectrogram from '../assets/spectrogram.jpg';
 
 const Home = () => {
-    const { user } = useAuth();
-
+    const { user } = useAuth(); // Get user from AuthProvider
     const navigate = useNavigate();
-
     const handleClick = () => {
-        if (user) {
+        if (user) {  // Check if user is logged in
             navigate('/analyze');
         } else {
-            navigate('/login');
+            navigate('/register');
         }
     }
 

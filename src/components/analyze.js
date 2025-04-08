@@ -7,13 +7,10 @@ import 'font-awesome/css/font-awesome.min.css';
 import AudioPlayer from './AudioPlayer';
 import { Card } from 'react-bootstrap';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
-import TimerIcon from '@mui/icons-material/Timer';
 import GraphicEqIcon from '@mui/icons-material/GraphicEq';
 import WaveformIcon from '@mui/icons-material/Whatshot';
-import { useAuth } from '../AuthProvider.js';
 
 const Analyze = () => {
-    const { user } = useAuth(); // Get user from AuthProvider
     const [file, setFile] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
     const [prediction, setPrediction] = useState(null)

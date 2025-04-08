@@ -63,13 +63,11 @@ const AudioPlayer = ({ audioFile, prediction }) => {
                     color: "#4B77D1",
                     '& .MuiSvgIcon-root': { fontSize: 70 }
                 }} 
-                
                 style={{
                     position: 'absolute',
                     top: '65%',
                     left: '63%',
                 }}
-                
                 size='large' 
                 icon={<PlayCircleIcon />} 
                 checkedIcon={<PauseCircleIcon />}

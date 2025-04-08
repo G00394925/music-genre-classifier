@@ -7,7 +7,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 
 const History = () => {
-
     const [history, setHistory] = useState([]);
     const [expandedRow, setExpandedRow] = useState(false);
 
@@ -66,7 +65,8 @@ const History = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {history.map((item, index) => (
+                            {// Iterate through history array and create a table row for each item 
+                            history.map((item, index) => ( 
                                 <>
                                     <tr 
                                         key={index} 
@@ -96,7 +96,7 @@ const History = () => {
                                                             <tr>
                                                                 <td>
                                                                     <div className="image-container">
-                                                                        <img className="feature-img" src={item.features.waveform_img}/>
+                                                                        <img className="feature-img" src={item.features.waveform_img} alt="Waveform"/>
                                                                         <div className="info-overlay">
                                                                             <p>
                                                                                 A waveform is a graphical representation of a signal over time. It represents
@@ -107,7 +107,7 @@ const History = () => {
                                                                 </td>
                                                                 <td>
                                                                 <div className="image-container">
-                                                                        <img className="feature-img" src={item.features.spectrogram_img}/>
+                                                                        <img className="feature-img" src={item.features.spectrogram_img} alt="Spectrogram" />
                                                                         <div className="info-overlay">
                                                                             <p>
                                                                                 Spectrograms show the visual representation of audio, showing frequency, amplitude, 
@@ -118,7 +118,7 @@ const History = () => {
                                                                 </td>
                                                                 <td>
                                                                 <div className="image-container">
-                                                                        <img className="feature-img" src={item.features.chroma_img}/>
+                                                                        <img className="feature-img" src={item.features.chroma_img} alt="Chromagram"/>
                                                                         <div className="info-overlay">
                                                                             <p>
                                                                                 Chromagrams show the pitch class distribution over time. It captures
