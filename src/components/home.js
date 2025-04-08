@@ -26,14 +26,17 @@ const Home = () => {
             <div className="features-container">
                 <div className='feature-card'>
                     <h3>Genre Detection</h3>
+                    <hr/>
                     <p>Instantly classify the genre of your track</p>
                 </div>
                 <div className='feature-card'>
                     <h3>Audio Analysis</h3>
+                    <hr/>
                     <p>Aquire insights about track features such as tempo and energy</p>
                 </div>
                 <div className='feature-card'>
                     <h3>Simple and Easy to use</h3>
+                    <hr/>
                     <p>All you have to do is drag and drop your audio file to get started!</p>
                 </div>
             </div>
