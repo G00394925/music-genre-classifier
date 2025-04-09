@@ -31,11 +31,11 @@
 
 #feature-card {
     background-color: #2b2b2b;
-    border-radius: 10px;
+    border-radius: 0px;
     padding: 10px 20px 20px 20px;
     color: white;
     width: 100%;
-    max-height: 200px;
+    max-height: 160px;
     height: 100%;
     margin: auto;
     display: flex;

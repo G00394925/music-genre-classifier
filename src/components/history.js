@@ -37,6 +37,9 @@ const History = () => {
 
     // Delete history
     const handleDelete = () => {
+        if (!window.confirm("NOTE: This will delete your entire history.")) {
+            return;
+        }
         axios.delete('/api/history')
             .then(() => {
                 getHistory() // Reload history
