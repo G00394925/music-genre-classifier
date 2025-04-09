@@ -90,7 +90,10 @@ const History = () => {
                                         <td>{item.features.tempo}</td>
                                         <td>{item.features.energy}</td>
                                         <td>{item.features.beats}</td>
-                                        <td>{new Date(item.timestamp).toLocaleDateString()}</td>
+                                        <td>{new Date(item.timestamp).toLocaleDateString()}
+                                            <i className="dropdown">{expandedRow === index ? '▲' : '▼'}</i>
+                                        </td>
+
                                     </tr>
                                     {expandedRow === index && (
                                         <tr>

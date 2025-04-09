@@ -131,3 +131,9 @@ td {
     margin: 5px 0;
     font-size: 14px;
 }
+
+.dropdown {
+    position: absolute;
+    top: 50%;
+    right: -28%;
+}
