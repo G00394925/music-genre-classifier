@@ -1,7 +1,7 @@
 """
 Flask server for the Music Genre Classifier app.
 
-This is a server that provides API endoings for
+This is a server that provides API endpoints for
 1. Analyzing a music track
 2. Retrieving the analysis history from a database
 3. User Authentication (registration, login)
@@ -62,6 +62,12 @@ scaler = None
 
 # Model is only trained once on server start
 def init_model():
+    """
+
+    Initialize the model and scaler.
+    Called on server startup.
+    
+    """
     global model, scaler
     try:
         model, scaler = m.train_model()
@@ -75,19 +81,29 @@ def init_model():
 # Read the file
 @app.route('/api/analyze', methods=['POST'])
 def analyze():
+    """
+    Analyze the uploaded music track and return the genre prediction.
+    Calls the predict_genre method from the Model class, where the
+    results are then added to a MongoDB database and returned.
+
+    Returns:
+        JSON response with the predicted genre and features.
+        - success (bool): True if account was created successfully
+        - message (str): Message with more details
+    """
     try:
         file = (request.files['user-track'])
         result = m.predict_genre(file)
         print(f"User: {request.form.get('user_id')}")
 
-        # Save the analysis to MongoDB
+        # Set the analysis data
         analysis_data = {
             "filename": file.filename,
             "prediction": result["prediction"],
             "features": result["features"],
             "timestamp": datetime.datetime.now()
         }
-        analyses.insert_one(analysis_data)
+        analyses.insert_one(analysis_data)  # Insert analysis data into MongoDB
 
         return jsonify({
             "message": result["prediction"],
@@ -101,6 +117,14 @@ def analyze():
 # Retrieve analysis history from database
 @app.route('/api/history', methods=['GET'])
 def get_history():
+    """
+    Retrives the analysis history from the database.
+
+    Returns:
+        JSON response with all analysis history.
+        - success (bool): True if account was created successfully
+        - message (str): Message with more details
+    """
     try:
         history = list(analyses.find(
             {},  # All documents
@@ -116,8 +140,16 @@ def get_history():
 # Delete analysis history
 @app.route('/api/history', methods=['DELETE'])
 def delete_history():
+    """
+    Deletes all entries in the analysis history.
+
+    Returns: 
+        JSON response with success message.
+        - success (bool): True if account was created successfully
+        - message (str): Message with more details
+    """
     try:
-        analyses.delete_many({})
+        analyses.delete_many({})  # Delete all entries
         return jsonify({
             "success": True,
             "message": "History has been cleared"})
@@ -128,10 +160,18 @@ def delete_history():
 # Create user account
 @app.route('/api/create-account', methods=['POST'])
 def create_account():
+    """
+    Creates a new user account. Requests the details from the client 
+    and then checks whether the email already exists or not. If it can't
+    find the email it proceeds to store the new user into the database.
+
+    Returns:
+        JSON response with status message.
+        - success (bool): True if account was created successfully
+        - message (str): Message with more details
+    """
     try:
-        print("Creating account...")
         user = request.get_json()
-        print(f"User data: {user}")
 
         existing_user = users.find_one({'email': user['email']})
         if existing_user:
@@ -163,7 +203,18 @@ def create_account():
 
 # Sign user into application
 @app.route('/api/sign-in', methods=['POST'])
-def get_account():
+def sign_in():
+    """
+    Signs user into their account if it exists. 
+    Will request the details from the client and checks if they exist
+    in the database, in which case it will return a success message and
+    sign the user in.
+    
+    Returns:
+        JSON response with status message.
+        - success: True if account was signed in
+        - message: Message with more details
+    """
     try:
         user_creds = request.get_json()  # Get user credentials from request
         
