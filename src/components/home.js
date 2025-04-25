@@ -6,7 +6,10 @@ const Home = () => {
     const { user } = useAuth(); // Get user from AuthProvider
     const navigate = useNavigate();
     const handleClick = () => {
-        if (user) {  // Check if user is logged in
+        // Check if user is logged in
+        // If user is logged in, navigate to analyze page
+        // If user is not logged in, navigate to register page
+        if (user) {  
             navigate('/analyze');
         } else {
             navigate('/register');

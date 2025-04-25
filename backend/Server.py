@@ -69,6 +69,7 @@ def init_model():
     
     """
     global model, scaler
+    
     try:
         model, scaler = m.train_model()
         print("Model has been trained")

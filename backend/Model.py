@@ -194,7 +194,7 @@ class Model():
         waveform_img = base64.b64encode(wave_buffer.getvalue()).decode('utf-8')
         plt.close()  # Close the plot to free memory
 
-        # Get a spectrogram image of the track
+        # Get a spectrogram image of the track & remove elements as before
         plt.figure(figsize=(10, 5))
         D = librosa.amplitude_to_db(np.abs(librosa.stft(y)), ref=np.max)
         librosa.display.specshow(D, sr=sr, x_axis='time', y_axis='log')

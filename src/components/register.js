@@ -39,6 +39,7 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // Check if user input is valid 
         if (validateAccount()) {
             try {
                 // Send user data to server and await on response from server
