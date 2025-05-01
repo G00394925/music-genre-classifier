@@ -146,7 +146,7 @@ def delete_history():
 
     Returns: 
         JSON response with success message.
-        - success (bool): True if account was created successfully
+        - success (bool): True if data was successfully deleted
         - message (str): Message with more details
     """
     try:
